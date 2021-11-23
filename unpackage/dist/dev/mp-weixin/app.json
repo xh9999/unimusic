@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/concer/concer",
+    "pages/detail/detail",
+    "pages/list/list",
+    "pages/login/login",
+    "pages/me/me",
+    "pages/mvplayer/mvplayer",
+    "pages/player/player",
+    "pages/search/search",
+    "pages/singer/singer"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/icon/home.png",
+        "selectedIconPath": "./static/icon/home_active.png"
+      },
+      {
+        "pagePath": "pages/player/player",
+        "iconPath": "./static/icon/play.png",
+        "selectedIconPath": "./static/icon/play_active.png",
+        "text": "正在播放"
+      },
+      {
+        "pagePath": "pages/concer/concer",
+        "iconPath": "./static/icon/singer.png",
+        "selectedIconPath": "./static/icon/singer_active.png",
+        "text": "歌手"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "./static/icon/me.png",
+        "selectedIconPath": "./static/icon/me_active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "1111"
+    }
+  },
+  "usingComponents": {}
+}
