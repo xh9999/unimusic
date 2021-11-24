@@ -51,5 +51,9 @@
       "desc": "1111"
     }
   },
-  "usingComponents": {}
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }
