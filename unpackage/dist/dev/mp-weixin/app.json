@@ -13,10 +13,11 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#000"
   },
   "tabBar": {
     "list": [

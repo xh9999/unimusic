@@ -3,12 +3,12 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
 			}
 		}, {
 			"path": "pages/concer/concer",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "歌手",
 				"enablePullDownRefresh": false
 			}
 
@@ -36,21 +36,21 @@
 		}, {
 			"path": "pages/me/me",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "我",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
 			"path": "pages/mvplayer/mvplayer",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "播放",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
 			"path": "pages/player/player",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "正在播放",
 				"enablePullDownRefresh": false
 			}
 
@@ -71,10 +71,11 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#000",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "white",
+		"backgroundColor": "#000"
 	},
 	"tabBar": {
 		"list": [{

@@ -1,0 +1,39 @@
+page {
+  height: 100%;
+}
+.contain {
+  height: 100%;
+  background-color: #000;
+}
+.contain video {
+  width: 100%;
+}
+.contain .title {
+  background-color: #222;
+  text-align: center;
+  color: #fff;
+  padding: 20rpx 0;
+}
+.contain .uni-list-item {
+  background-color: #000;
+  color: #fff;
+  font-size: 30rpx;
+}
+.contain .icon {
+  width: 110rpx;
+  height: 110rpx;
+  margin-right: 40rpx;
+}
+.contain .icon image {
+  width: 110rpx;
+  height: 110rpx;
+}
+.contain .content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contain .content .one {
+  margin-top: 10rpx;
+}
+
