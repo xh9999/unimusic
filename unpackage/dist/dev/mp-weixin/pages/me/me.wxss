@@ -1,7 +1,44 @@
-.self .one {
-  height: 100rpx;
+page {
+  background-color: #000;
+}
+.self .message {
+  text-align: center;
+}
+.self .uni-collapse-item__title-box.data-v-41027c34 {
   background-color: #000;
   color: #fff;
+}
+.self .uni-collapse-item__title-box.data-v-41027c34 {
+  padding: 70rpx 30rpx;
+}
+.self .uni-collapse-item__title.data-v-41027c34 {
+  background-color: #000;
+}
+.self .lists {
+  display: flex;
+  padding: 20rpx;
+  background-color: #000;
+  color: #fff;
+  border-bottom: solid #C0C0C0 2rpx;
+  border-top: solid 1rpx #C0C0C0;
+}
+.self .lists .imgs {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 15rpx;
+}
+.self .lists .imgs image {
+  width: 100%;
+  height: 100%;
+}
+.self .lists .content {
+  font-size: 30rpx;
+}
+.self .lists .content .name {
+  padding: 10rpx 0;
+}
+.self .lists .content .arname {
+  padding: 10rpx 0;
 }
 .title {
   position: relative;

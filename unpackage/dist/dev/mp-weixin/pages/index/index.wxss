@@ -60,9 +60,19 @@ page {
 }
 .container .search {
   color: #fff;
+  width: 100%;
+  padding-bottom: 15rpx;
+  background-color: #000;
+  display: flex;
 }
-.container .search .uni-searchbar {
-  background-color: #000 !important;
+.container .search view {
+  position: relative;
+  justify-content: center;
+  width: 680rpx;
+  background-color: #fff;
+  height: 76rpx;
+  margin: auto;
+  border-radius: 50rpx;
 }
 .container .recommend {
   background-color: #222;
@@ -126,7 +136,7 @@ page {
 @font-face {
   font-family: 'iconfont';
   /* Project id 2907777 */
-  src: url('//at.alicdn.com/t/font_2907777_47cq79081y7.woff2?t=1635940927828') format('woff2'), url('//at.alicdn.com/t/font_2907777_47cq79081y7.woff?t=1635940927828') format('woff'), url('//at.alicdn.com/t/font_2907777_47cq79081y7.ttf?t=1635940927828') format('truetype');
+  src: url('//at.alicdn.com/t/font_2907777_veaioljcr7s.woff2?t=1637829520655') format('woff2'), url('//at.alicdn.com/t/font_2907777_veaioljcr7s.woff?t=1637829520655') format('woff'), url('//at.alicdn.com/t/font_2907777_veaioljcr7s.ttf?t=1637829520655') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -141,6 +151,16 @@ page {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-sousuo:before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 30rpx;
+  content: "\e602";
+  color: #000;
 }
 .icon-denglu:before {
   content: "\e67c";

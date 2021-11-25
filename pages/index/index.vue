@@ -20,7 +20,7 @@
 		</view>
 		<!-- 搜索 -->
 		<view class="search">
-			<uni-search-bar @focus="input" :radius="20"></uni-search-bar>
+			<view class="iconfont icon-sousuo" @click="handle3"></view>
 		</view>
 		<!-- 轮播图 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" class="swiper">
@@ -93,6 +93,11 @@
 			this.getStauts();
 		},
 		methods: {
+			handle3() {
+				uni.navigateTo({
+					url: '/pages/search/search',
+				});
+			},
 			// banner部分
 			async getBanner() {
 				const result = await requestGet(sliderUrl);
@@ -164,9 +169,11 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+
 		.message {
 			text-align: center;
 		}
+
 		.login {
 			background-color: #000;
 			padding: 0 30rpx;
@@ -229,9 +236,19 @@
 
 		.search {
 			color: #fff;
+			width: 100%;
+			padding-bottom: 15rpx;
+			background-color: #000;
+			display: flex;
 
-			.uni-searchbar {
-				background-color: #000 !important;
+			view {
+				position: relative;
+				justify-content: center;
+				width: 680rpx;
+				background-color: #fff;
+				height: 76rpx;
+				margin: auto;
+				border-radius: 50rpx;
 			}
 		}
 
@@ -312,9 +329,9 @@
 	@font-face {
 		font-family: 'iconfont';
 		/* Project id 2907777 */
-		src: url('//at.alicdn.com/t/font_2907777_47cq79081y7.woff2?t=1635940927828') format('woff2'),
-			url('//at.alicdn.com/t/font_2907777_47cq79081y7.woff?t=1635940927828') format('woff'),
-			url('//at.alicdn.com/t/font_2907777_47cq79081y7.ttf?t=1635940927828') format('truetype');
+		src: url('//at.alicdn.com/t/font_2907777_veaioljcr7s.woff2?t=1637829520655') format('woff2'),
+			url('//at.alicdn.com/t/font_2907777_veaioljcr7s.woff?t=1637829520655') format('woff'),
+			url('//at.alicdn.com/t/font_2907777_veaioljcr7s.ttf?t=1637829520655') format('truetype');
 	}
 
 	.iconfont {
@@ -331,6 +348,16 @@
 		font-style: normal;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	}
+
+	.icon-sousuo:before {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 30rpx;
+		content: "\e602";
+		color: #000;
 	}
 
 	.icon-denglu:before {

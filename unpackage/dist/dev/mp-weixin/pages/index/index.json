@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
-    "uni-search-bar": "/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar",
     "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
     "uni-popup-message": "/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message"
   }

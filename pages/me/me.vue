@@ -11,9 +11,19 @@
 			</view>
 		</view>
 		<uni-collapse>
-			<uni-collapse-item :show-animation="true" title="开启动画">
-				<view @click="click" class="one" v-for="item in likeSongs" :key='item.id'>{{item.names}}</view>
-			</uni-collapse-item>
+			<view @click="handle">
+				<uni-collapse-item :show-animation="true" title="我喜欢" :disabled="flag" @click='handle'>
+					<view @click="click(item.id)" v-for="item in Songs" :key='item.id' class="lists">
+						<view class="imgs">
+							<image :src="item.img" mode=""></image>
+						</view>
+						<view class="content">
+							<view class="name">{{item.names}}</view>
+							<view class="arname">{{item.arname}}</view>
+						</view>
+					</view>
+				</uni-collapse-item>
+			</view>
 			<uni-collapse-item :show-animation="true" title="开启动画">
 				<text>折叠内容</text>
 			</uni-collapse-item>
@@ -21,6 +31,9 @@
 				<text>折叠内容</text>
 			</uni-collapse-item>
 		</uni-collapse>
+		<uni-popup ref="popup" type="message" class="message">
+			<uni-popup-message type="info" message="请先登录" :duration="1000" class="message"></uni-popup-message>
+		</uni-popup>
 	</view>
 </template>
 
@@ -42,40 +55,122 @@
 				content: [],
 				backgroundImg: null,
 				name: '',
-				useId: ''
+				useId: '',
+				Songs: '',
+				flag: true
 			}
 		},
-		computed:{
+		computed: {
 			...mapState(['likeSongs'])
 		},
 		onLoad() {
-			console.log(this.likeSongs[1],'============')
+			if (this.likeSongs.length != 0) {
+				uni.setStorageSync('LlikeSongs', this.likeSongs);
+				this.Songs = this.likeSongs
+			} else {
+				this.Songs = uni.getStorageSync('LlikeSongs')
+			}
 		},
 		onShow() {
 			if (uni.getStorageSync("img")) {
 				this.backgroundImg = uni.getStorageSync("img");
 				this.name = uni.getStorageSync("name");
 				this.useId = uni.getStorageSync("useId");
+				this.flag = false
 			} else {
 				this.backgroundImg = null;
 				this.name = null;
 				this.content = null;
+				this.flag = true
 			}
 		},
 		methods: {
-			click() {
-				console.log(123)
+			...mapMutations(['change']),
+			click(id) {
+				this.change(id);
+				uni.switchTab({
+					url: `/pages/player/player`,
+				})
+			},
+			handle() {
+				if (!uni.getStorageSync("img")) {
+					this.$refs.popup.open('top')
+				}
 			}
 		}
 	}
 </script>
 
 <style lang="less">
+	page {
+		background-color: #000;
+	}
+
 	.self {
-		.one {
-			height: 100rpx;
+		.message {
+			text-align: center;
+		}
+
+		/* #ifdef MP-WEIXIN */
+		.uni-collapse-item__title-box.data-v-41027c34 {
 			background-color: #000;
 			color: #fff;
+		}
+
+		.uni-collapse-item__title-box.data-v-41027c34 {
+			padding: 70rpx 30rpx;
+		}
+
+		.uni-collapse-item__title.data-v-41027c34 {
+			background-color: #000;
+		}
+
+		/* #endif */
+		/* #ifdef H5 */
+		/deep/.uni-collapse-item__title-box[data-v-41027c34] {
+			background-color: #000;
+			color: #fff;
+		}
+
+		/deep/.uni-collapse-item__title-box[data-v-41027c34] {
+			padding: 70rpx 30rpx;
+		}
+
+		/deep/.uni-collapse-item__title[data-v-41027c34] {
+			background-color: #000;
+		}
+
+		/* #endif */
+		.lists {
+			display: flex;
+			padding: 20rpx;
+			background-color: #000;
+			color: #fff;
+			border-bottom: solid #C0C0C0 2rpx;
+			border-top: solid 1rpx #C0C0C0;
+
+			.imgs {
+				width: 120rpx;
+				height: 120rpx;
+				margin-right: 15rpx;
+
+				image {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.content {
+				font-size: 30rpx;
+
+				.name {
+					padding: 10rpx 0;
+				}
+
+				.arname {
+					padding: 10rpx 0;
+				}
+			}
 		}
 	}
 
