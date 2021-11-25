@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		歌手
 	</view>
 </template>
 

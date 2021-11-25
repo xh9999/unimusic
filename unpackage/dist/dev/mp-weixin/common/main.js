@@ -19,9 +19,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.createApp 
 
 
 
-var _vue = __webpack_require__(/*! vue */ 8);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+var _vue = __webpack_require__(/*! vue */ 8);
+var _index = _interopRequireDefault(__webpack_require__(/*! ./store/index.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 function createApp() {
   var app = (0, _vue.createSSRApp)(_App.default);
+  app.use(_index.default);
   return {
     app: app };
 

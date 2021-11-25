@@ -35,6 +35,12 @@
           "pathName": "pages/mvplayer/mvplayer",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/player/player",
+          "pathName": "pages/player/player",
+          "query": "",
+          "scene": null
         }
       ]
     }

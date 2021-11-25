@@ -61,8 +61,8 @@
 				</view>
 			</view>
 		</scroll-view>
-		<uni-popup ref="popup" type="message">
-			<uni-popup-message type="error" message="请先登录" :duration="1000" class="message"></uni-popup-message>
+		<uni-popup ref="popup" type="message" class="message">
+			<uni-popup-message type="info" message="请先登录" :duration="1000" class="message"></uni-popup-message>
 		</uni-popup>
 	</view>
 </template>
@@ -127,6 +127,14 @@
 			input() {
 				console.log(123)
 			},
+			gettop(id) {
+				uni.navigateTo({
+					url: `/pages/detail/detail?id=${id}&tag=two`,
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			},
 			click(e) {
 				var type = e;
 				if (type == "new" || type == "songer") {
@@ -156,7 +164,9 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-
+		.message {
+			text-align: center;
+		}
 		.login {
 			background-color: #000;
 			padding: 0 30rpx;

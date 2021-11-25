@@ -82,10 +82,17 @@
 				</uni-list-item>
 			</uni-list>
 		</view>
+		<uni-load-more :status="'loading'" v-if="flag==false"></uni-load-more>
+		<uni-load-more :status="'nomore'" v-else class="loader"></uni-load-more>
 	</view>
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
 	import {
 		requestGet,
 		hotUrl,
@@ -99,7 +106,9 @@
 			return {
 				type: '',
 				content: null,
-				limit: 15
+				content1: null,
+				limit: 15,
+				flag: false
 			}
 		},
 		onLoad(options) {
@@ -107,12 +116,31 @@
 			this.getRecommend();
 		},
 		onReachBottom() {
-			this.limit += 10;
-			this.getRecommend();
+			this.content1 = this.content;
+			if (this.type != 'new') {
+				this.limit += 10;
+				this.clickLoadMore
+				this.getRecommend().then(() => {
+					if (this.content1.length == this.content.length) {
+						this.flag = true;
+					} else {
+						this.content1 = this.content;
+					}
+				});
+			} else {
+				this.flag = true
+			}
+		},
+		computed: {
+			...mapState(['id'])
 		},
 		methods: {
-			player(){
-				console.log(123)
+			...mapMutations(['change']),
+			player(id) {
+				this.change(id);
+				uni.switchTab({
+					url: '/pages/player/player'
+				})
 			},
 			// 每日推荐对应的内容
 			async getRecommend() {
@@ -126,6 +154,7 @@
 					// #endif
 					// 获取到数据后清除轻提示
 					this.content = result.recommend;
+
 					// 推荐电台
 				} else if (this.type == 'radio') {
 					var url = radioUrl;
@@ -133,7 +162,6 @@
 						limit: this.limit
 					});
 					this.content = result.programs;
-					console.log(this.content)
 					// 推荐mv
 				} else if (this.type == 'mv') {
 					var url = mvUrl;
@@ -154,9 +182,6 @@
 			},
 			// 获取mv的地址
 			click(id) {
-				// uni.navigateTo({
-				// 	url: `/pages/mvplayer/mvplayer?id=${id}`,
-				// });
 				uni.navigateTo({
 					url: `/pages/mvplayer/mvplayer?id=${id}`,
 					success: res => {},
@@ -164,6 +189,11 @@
 					complete: () => {}
 				});
 			},
+			handle(sid) {
+				uni.navigateTo({
+					url: `/pages/detail/detail?id=${sid}&tag=one`,
+				})
+			}
 		}
 
 	}

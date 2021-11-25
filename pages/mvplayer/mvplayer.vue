@@ -49,6 +49,9 @@
 			console.log(this.id, "88888888888")
 			this.getMv();
 		},
+		created() {
+			
+		},
 		onReady: function() {
 			this.getComment();
 		},

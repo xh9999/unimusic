@@ -6,6 +6,9 @@ page {
   flex-direction: column;
   height: 100%;
 }
+.container .message {
+  text-align: center;
+}
 .container .login {
   background-color: #000;
   padding: 0 30rpx;
