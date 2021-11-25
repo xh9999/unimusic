@@ -45,25 +45,13 @@
     return a.time - b.time;
   }
   
-  // 歌词滚动
-  // export function lyricScroll(showLyric,currentTime){
-	 //  var playTime = [];
-	 //  var marginTop = 0;
-	 //  showLyric.map((item)=>{
-		// playTime.push(item.time)
-	 //  })
-	 //  playTime.map((index)=>{
-		//   if(currentTime>playTime[0]){
-		// 	  marginTop = this.index * 32;
-			  
-		//   }
-		//   playTime.shift()
-	 //  })
-	 //  // if(currentTime > playTime[0]){
-		//  //  marginTop
-	 //  // }
-	 //  console.log(playTime);
-	  
-  // }	
+  // 提示信息
+  export function showToast(title){
+	  uni.showToast({
+	      title: title,
+	      duration: 2000,
+	  	icon:'error'
+	  });
+  }
 
 
