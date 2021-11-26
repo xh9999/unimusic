@@ -1,1 +1,1 @@
-<view>歌手</view>
+<view class="item"><block wx:for="{{songer}}" wx:for-item="item" wx:for-index="index" wx:key="name"><view data-event-opts="{{[['tap',[['IsSongerId',['$0',index],[[['songer','name',item.name,'id']]]]]]]}}" class="item-list" bindtap="__e"><image class="item-img" src="{{item.picUrl}}"></image><text class="item-text">{{item.name}}</text></view></block></view>

@@ -6785,7 +6785,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.requestGet = requestGet;exports.requestPost = requestPost;exports.artistURL = exports.SongListURL = exports.LyricURL = exports.SongURL = exports.SongDataURL = exports.searchHotUrl = exports.searchUrl = exports.likeList = exports.mvcomment = exports.musicDetail = exports.musicUrl = exports.personal = exports.simimv = exports.mv = exports.hotUrl = exports.radioUrl = exports.mvUrl = exports.H5newSong = exports.newSong = exports.sonList = exports.albumUrl = exports.sliderUrl = exports.H5loginUrl = exports.loginUrl = void 0;function requestGet(url, data) {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.requestGet = requestGet;exports.requestPost = requestPost;exports.Singurl = exports.Songerurl = exports.artistURL = exports.SongListURL = exports.LyricURL = exports.SongURL = exports.SongDataURL = exports.searchHotUrl = exports.searchUrl = exports.likeList = exports.mvcomment = exports.musicDetail = exports.musicUrl = exports.personal = exports.simimv = exports.mv = exports.hotUrl = exports.radioUrl = exports.mvUrl = exports.H5newSong = exports.newSong = exports.sonList = exports.albumUrl = exports.sliderUrl = exports.H5loginUrl = exports.loginUrl = void 0;function requestGet(url, data) {
 
   return new Promise(function (resolve, reject) {
     uni.request({
@@ -6882,7 +6882,8 @@ exports.SongDataURL = SongDataURL;var SongURL = "http://121.5.237.135:3000/song/
 exports.SongURL = SongURL;var LyricURL = "http://121.5.237.135:3000/lyric"; //获取歌词
 exports.LyricURL = LyricURL;var SongListURL = "http://121.5.237.135:3000/playlist/detail"; //获取歌单详情
 exports.SongListURL = SongListURL;var artistURL = "http://121.5.237.135:3000/artist/top/song"; //歌手热门 50 首歌曲
-exports.artistURL = artistURL;
+exports.artistURL = artistURL;var Songerurl = "http://121.5.237.135:3000/top/artists";exports.Songerurl = Songerurl;
+var Singurl = "http://121.5.237.135:3000/artists?id=";exports.Singurl = Singurl;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
 
 /***/ }),

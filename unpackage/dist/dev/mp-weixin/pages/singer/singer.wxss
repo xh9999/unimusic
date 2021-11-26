@@ -1,0 +1,33 @@
+.sing {
+  background-color: black;
+}
+.sing image {
+  width: 100%;
+}
+.sing .sing-list {
+  width: 100%;
+  height: 110rpx;
+  position: relative;
+}
+.sing .sing-list .index {
+  color: white;
+  position: absolute;
+  top: 50rpx;
+  left: 30rpx;
+  font-size: 25rpx;
+}
+.sing .sing-list .sing-text {
+  position: absolute;
+  top: 35rpx;
+  left: 90rpx;
+  font-size: 30rpx;
+  color: white;
+}
+.sing .sing-list .singer-name {
+  position: absolute;
+  top: 70rpx;
+  left: 90rpx;
+  font-size: 20rpx;
+  color: white;
+}
+

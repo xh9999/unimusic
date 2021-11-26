@@ -94,8 +94,8 @@
 						</view>
 					</view>
 					<!-- 歌手音乐 -->
-					<view v-else-if="searchSong">
-						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in searchSong"
+					<view v-else-if="flag=='songer'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in songsList"
 							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
@@ -120,6 +120,7 @@
 							<view class="singer">{{item.arname}}</view>
 						</view>
 					</view>
+					<!-- 根据歌单渲染播放列表 -->
 					<view v-else-if="flag=='toplist'">
 						<view class="item" @click="playthis(item.id,$event)" v-for="(item ,index) in songsList"
 							:key="item.id" :data-index="index" :data-id="item.id">

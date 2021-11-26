@@ -1,1 +1,1 @@
-<view></view>
+<view class="sing"><image src="{{picUrl}}"></image><block wx:for="{{sings}}" wx:for-item="item" wx:for-index="index" wx:key="id"><view data-event-opts="{{[['tap',[['gotoplay',['$0'],[[['sings','id',item.id,'id']]]]]]]}}" class="sing-list" bindtap="__e"><text class="index">{{index}}</text><text class="sing-text">{{item.name}}</text><text class="singer-name">{{name}}</text></view></block></view>
