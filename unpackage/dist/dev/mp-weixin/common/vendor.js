@@ -5964,6 +5964,73 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ 234:
+/*!***********************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/format.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports._pad = _pad;exports._formatTime = _formatTime;exports.formatLyric = formatLyric;exports.sortRule = sortRule;exports.showToast = showToast; /*秒前边加0*/
+function _pad(num) {var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  var len = num.toString().length;
+  while (len < n) {
+    num = '0' + num;
+    len++;
+  }
+  return num;
+}
+
+// 处理时间 秒变为分秒
+function _formatTime(interval) {
+  interval = interval | 0;
+  var minute = interval / 60 | 0;
+  var second = _pad(interval % 60);
+  return "".concat(minute, ":").concat(second);
+}
+
+// 处理歌词
+function formatLyric(text) {
+  var resultLyric = [];
+  var arr = text.split("\n"); //通过换行符“\n”进行切割
+  var row = arr.length; //获取歌词行数
+  var _loop = function _loop(i) {
+    var temp_row = arr[i]; //现在每一行格式大概就是这样"[00:04.302][02:10.00]hello world";
+    var temp_arr = temp_row.split("]"); //我们可以通过“]”对时间和文本进行分离
+    var text = temp_arr.pop(); //把歌词文本从数组中剔除出来，获取到歌词文本了！
+    //再对剩下的歌词时间进行处理
+    temp_arr.forEach(function (element) {
+      var obj = {};
+      var time_arr = element.substr(1, element.length - 1).split(":"); //先把多余的“[”去掉，再分离出分、秒
+      var s = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
+      obj.time = s;
+      obj.text = text;
+      resultLyric.push(obj); //每一行歌词对象存到组件的showLyric歌词属性里
+    });};for (var i = 0; i < row; i++) {_loop(i);
+  }
+  resultLyric.sort(sortRule); //由于不同时间的相同歌词我们给排到一起了，所以这里要以时间顺序重新排列一下
+  // showLyric=resultLyric
+  return resultLyric;
+}
+
+//设置一下排序规则
+function sortRule(a, b) {
+  return a.time - b.time;
+}
+
+// 提示信息
+function showToast(title) {
+  uni.showToast({
+    title: title,
+    duration: 2000,
+    icon: 'error' });
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
+
+/***/ }),
+
 /***/ 24:
 /*!**************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/util.js ***!
@@ -6777,7 +6844,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.requestGet = requestGet;exports.requestPost = requestPost;exports.searchHotUrl = exports.searchUrl = exports.likeList = exports.mvcomment = exports.musicDetail = exports.musicUrl = exports.personal = exports.simimv = exports.mv = exports.hotUrl = exports.radioUrl = exports.mvUrl = exports.H5newSong = exports.newSong = exports.sonList = exports.albumUrl = exports.sliderUrl = exports.H5loginUrl = exports.loginUrl = void 0;function requestGet(url, data) {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.requestGet = requestGet;exports.requestPost = requestPost;exports.artistURL = exports.SongListURL = exports.LyricURL = exports.SongURL = exports.SongDataURL = exports.searchHotUrl = exports.searchUrl = exports.likeList = exports.mvcomment = exports.musicDetail = exports.musicUrl = exports.personal = exports.simimv = exports.mv = exports.hotUrl = exports.radioUrl = exports.mvUrl = exports.H5newSong = exports.newSong = exports.sonList = exports.albumUrl = exports.sliderUrl = exports.H5loginUrl = exports.loginUrl = void 0;function requestGet(url, data) {
 
   return new Promise(function (resolve, reject) {
     uni.request({
@@ -6832,29 +6899,10 @@ function requestPost(url, data) {
       },
       fail: function fail(err) {
         reject(err);
-      }
-      // success: res => {
-      // 	resolve(res,"000000000000000000000000");
-      // },
-      // fail: (err) => {
-      // 	reject(err,"99999999999999999999999")
-      // },
-      // complete: () => {
-      // 	console.log("77777777777777777777777777")
-      // }
-    });
+      } });
+
   });
 };
-
-// export function requestPostAxios(url, data) {
-// 	// 发送 POST 请求
-// 	return axios({
-// 		method: 'post',
-// 		url: url,
-// 		data: data
-// 	});
-// };
-
 
 var loginUrl = 'http://121.5.237.135:3000/login/cellphone'; //post请求
 exports.loginUrl = loginUrl;var H5loginUrl = '/login/cellphone'; //post请求
@@ -6888,6 +6936,12 @@ exports.musicDetail = musicDetail;var mvcomment = "http://121.5.237.135:3000/com
 exports.mvcomment = mvcomment;var likeList = "http://121.5.237.135:3000/likelist";exports.likeList = likeList;
 var searchUrl = "http://121.5.237.135:3000/search";exports.searchUrl = searchUrl;
 var searchHotUrl = "http://121.5.237.135:3000/search/hot";exports.searchHotUrl = searchHotUrl;
+var SongDataURL = "http://121.5.237.135:3000/song/detail?ids="; //获取歌曲详情
+exports.SongDataURL = SongDataURL;var SongURL = "http://121.5.237.135:3000/song/url?id="; //获取音乐 url
+exports.SongURL = SongURL;var LyricURL = "http://121.5.237.135:3000/lyric?id="; //获取歌词
+exports.LyricURL = LyricURL;var SongListURL = "http://121.5.237.135:3000/playlist/detail?id="; //获取歌单详情
+exports.SongListURL = SongListURL;var artistURL = "http://121.5.237.135:3000/artist/top/song?id=5781"; //歌手热门 50 首歌曲
+exports.artistURL = artistURL;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
 
 /***/ }),
