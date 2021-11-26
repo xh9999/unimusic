@@ -8,7 +8,7 @@
 		}, {
 			"path": "pages/concer/concer",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "热门歌手",
 				"enablePullDownRefresh": false
 			}
 
@@ -64,7 +64,7 @@
 		}, {
 			"path": "pages/singer/singer",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "歌曲",
 				"enablePullDownRefresh": false
 			}
 
