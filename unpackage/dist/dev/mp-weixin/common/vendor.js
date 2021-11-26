@@ -2746,7 +2746,7 @@ exports.artistURL = artistURL;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports._pad = _pad;exports._formatTime = _formatTime;exports.formatLyric = formatLyric;exports.sortRule = sortRule; /*秒前边加0*/
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports._pad = _pad;exports._formatTime = _formatTime;exports.formatLyric = formatLyric;exports.sortRule = sortRule;exports.showToast = showToast; /*秒前边加0*/
 function _pad(num) {var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
   var len = num.toString().length;
   while (len < n) {
@@ -2793,26 +2793,15 @@ function sortRule(a, b) {
   return a.time - b.time;
 }
 
-// 歌词滚动
-// export function lyricScroll(showLyric,currentTime){
-//  var playTime = [];
-//  var marginTop = 0;
-//  showLyric.map((item)=>{
-// playTime.push(item.time)
-//  })
-//  playTime.map((index)=>{
-//   if(currentTime>playTime[0]){
-// 	  marginTop = this.index * 32;
+// 提示信息
+function showToast(title) {
+  uni.showToast({
+    title: title,
+    duration: 2000,
+    icon: 'error' });
 
-//   }
-//   playTime.shift()
-//  })
-//  // if(currentTime > playTime[0]){
-//  //  marginTop
-//  // }
-//  console.log(playTime);
-
-// }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
 
 /***/ }),
 

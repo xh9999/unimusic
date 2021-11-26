@@ -267,9 +267,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 var _http = __webpack_require__(/*! @/utils/http.js */ 66);
 
 
@@ -285,11 +282,12 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
 
 
 
+
 {
   data: function data() {
     return {
       songs: [],
-      isPlay: '',
+      isPlay: false,
       currentDot: 0,
       dotsArray: new Array(2),
       playMod: 1,
@@ -304,7 +302,10 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
       timer: null,
       songlist: [],
       id: null,
-      idx: 0 };
+      idx: 0,
+      songPic: '',
+      songArtist: '',
+      bgAudioManager: null };
 
   },
   onLoad: function onLoad() {
@@ -334,7 +335,9 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
     // 获取歌曲信息
     getSongData: function getSongData(id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   (0, _http.requestGet)(_http.SongDataURL + id));case 2:result = _context.sent;
-                _this.songs = result.songs[0];case 4:case "end":return _context.stop();}}}, _callee);}))();
+                _this.songs = result.songs[0];
+                _this.songPic = _this.songs.al.picUrl;
+                _this.songArtist = _this.songs.ar[0];case 6:case "end":return _context.stop();}}}, _callee);}))();
     },
     // 获取歌曲的URL地址
     getSongURL: function getSongURL(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
@@ -358,52 +361,77 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
                 _this5.songlist = result.songs;case 4:case "end":return _context5.stop();}}}, _callee5);}))();
     },
     // 创建播放器
+
+
+
     createBgAudio: function createBgAudio(res) {var _this6 = this;
       if (res.url) {
-        //获取全局唯一的背景音频管理器。并把它给实例bgAudioManage
-        var bgAudioManager = uni.getBackgroundAudioManager();
-        bgAudioManager.title = 'title';
-        bgAudioManager.src = res.url;
-        bgAudioManager.onPlay(function () {
+
+        this.bgAudioManager = uni.getBackgroundAudioManager(); //获取全局唯一的背景音频管理器。并把它给实例bgAudioManage
+        this.bgAudioManager.title = 'title';
+        this.bgAudioManager.src = res.url;
+        this.bgAudioManager.onPlay(function () {
           _this6.isPlay = true;
           _this6.lyricScroll();
           console.log('开始播放了');
         });
-        bgAudioManager.onEnded(function () {
+        this.bgAudioManager.onEnded(function () {
           _this6.next();
           console.log('播放结束了');
         });
-        bgAudioManager.onPause(function () {
+        this.bgAudioManager.onPause(function () {
           clearInterval(_this6.timer);
           console.log('播放暂停了');
         });
-        bgAudioManager.onTimeUpdate(function () {
-          var currentTime = bgAudioManager.currentTime;
-          var duration = bgAudioManager.duration;
+        this.bgAudioManager.onTimeUpdate(function () {
+          var currentTime = _this6.bgAudioManager.currentTime;
+          var duration = _this6.bgAudioManager.duration;
           var precent = currentTime / duration * 100;
           _this6.duration = (0, _format._formatTime)(duration);
           _this6.currentTime = (0, _format._formatTime)(currentTime);
           _this6.precent = precent;
         });
-      } else {
-        uni.showToast({
-          title: '该歌曲需付费',
-          duration: 2000,
-          icon: 'error' });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      } else {
+        (0, _format.showToast)('该歌曲需付费 ');
       }
     },
     // 歌词滚动
     lyricScroll: function lyricScroll() {var _this7 = this;
       clearInterval(this.timer);
       this.timer = setInterval(function () {
-        var bgAudioManager = uni.getBackgroundAudioManager();
         for (var i = 0; i < _this7.showLyric.length; i++) {
-          if (bgAudioManager.currentTime >= _this7.showLyric[_this7.showLyric.length - 1].time) {
+          if (_this7.bgAudioManager.currentTime >= _this7.showLyric[_this7.showLyric.length - 1].time) {
             _this7.lyricIndex = _this7.showLyric.length - 1;
             break;
           }
-          if (bgAudioManager.currentTime >= _this7.showLyric[i].time - 1 && bgAudioManager.currentTime <= _this7.showLyric[i + 1].time - 1) {
+          if (_this7.bgAudioManager.currentTime >= _this7.showLyric[i].time - 1 && _this7.bgAudioManager.currentTime <= _this7.showLyric[i + 1].time - 1) {
             _this7.lyricIndex = i;
             _this7.marginTop = (_this7.lyricIndex - 1) * 32;
           }
@@ -412,13 +440,17 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
     },
     // 暂停和播放
     togglePlaying: function togglePlaying() {
-      var bgAudioManager = uni.getBackgroundAudioManager();
-      if (this.isPlay) {
-        bgAudioManager.pause();
+      if (this.id) {
+        if (this.isPlay) {
+          this.bgAudioManager.pause();
+        } else {
+          this.bgAudioManager.play();
+        }
+        this.isPlay = !this.isPlay;
       } else {
-        bgAudioManager.play();
+        (0, _format.showToast)('暂无歌曲 ');
       }
-      this.isPlay = !this.isPlay;
+
     },
     // 小圆点
     changeDot: function changeDot(e) {
@@ -426,10 +458,9 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
     },
     // 进度条拖动
     sliderChange: function sliderChange(e) {
-      var bgAudioManager = uni.getBackgroundAudioManager();
-      var value = e.detail.value / 100 * bgAudioManager.duration;
-      bgAudioManager.seek(Math.ceil(value));
-      bgAudioManager.play();
+      var value = e.detail.value / 100 * this.bgAudioManager.duration;
+      this.bgAudioManager.seek(Math.ceil(value));
+      this.bgAudioManager.play();
     },
     // 切换播放顺序
     changeMod: function changeMod() {
@@ -452,55 +483,63 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 67);function _interop
       this.id = e.currentTarget.dataset.id;
       this.idx = e.currentTarget.dataset.index;
       this._init(this.id);
-      uni.getBackgroundAudioManager().stop();
+      this.bgAudioManager.destroy();
       this.isPlay = false;
       this.translateCls = 'downtranslate';
     },
     // 播放下一首
     next: function next() {
-      this.idx += 1;
-      // 顺序播放
-      if (this.playMod === 1) {
-        // 如果是最后一首则从第一首开始播放
-        if (this.idx === this.songlist.length) {
-          this.idx = 0;
+      if (this.id) {
+        this.idx += 1;
+        // 顺序播放
+        if (this.playMod === 1) {
+          // 如果是最后一首则从第一首开始播放
+          if (this.idx === this.songlist.length) {
+            this.idx = 0;
+            this.playSong();
+          } else {
+            this.playSong();
+          }
+        } else if (this.playMod === 2) {
+          this.idx = Math.ceil(Math.random() * this.songlist.length);
           this.playSong();
         } else {
+          this.idx = this.idx - 1;
           this.playSong();
         }
-      } else if (this.playMod === 2) {
-        this.idx = Math.ceil(Math.random() * this.songlist.length);
-        this.playSong();
       } else {
-        this.idx = this.idx - 1;
-        this.playSong();
+        (0, _format.showToast)('暂无歌曲 ');
       }
 
     },
     // 播放上一首
     prev: function prev() {
-      this.idx -= 1;
-      // 顺序播放
-      if (this.playMod === 1) {
-        // 如果是最后一首则从第一首开始播放
-        if (this.idx === -1) {
-          this.idx = this.songlist.length - 1;
+      if (this.id) {
+        this.idx -= 1;
+        // 顺序播放
+        if (this.playMod === 1) {
+          // 如果是最后一首则从第一首开始播放
+          if (this.idx === -1) {
+            this.idx = this.songlist.length - 1;
+            this.playSong();
+          } else {
+            this.playSong();
+          }
+        } else if (this.playMod === 2) {
+          this.idx = Math.ceil(Math.random() * this.songlist.length);
           this.playSong();
         } else {
+          this.idx = this.idx + 1;
           this.playSong();
         }
-      } else if (this.playMod === 2) {
-        this.idx = Math.ceil(Math.random() * this.songlist.length);
-        this.playSong();
       } else {
-        this.idx = this.idx + 1;
-        this.playSong();
+        (0, _format.showToast)('暂无歌曲 ');
       }
     },
     playSong: function playSong() {
       this.id = this.songlist[this.idx].id;
       this._init(this.id);
-      uni.getBackgroundAudioManager().stop();
+      this.bgAudioManager.stop();
       this.isPlay = false;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
