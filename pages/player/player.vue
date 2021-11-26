@@ -68,58 +68,66 @@
 			<view class="play-content">
 				<view class="plyer-list-title">播放队列</view>
 				<scroll-view class="playlist-wrapper" scroll-y>
-					<view v-if="songlist">
+					<!-- <view v-if="songlist">
 						<view class="item" @tap="playthis" v-for="(item,index) in songlist" :key="item.id"
 							:data-id="item.id" :data-index="index">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.ar[0].name}}</view>
 						</view>
-					</view>
-					<!--<view v-else-if="everyday">
-						<view class="item" @tap="playthis" v-for="item in everyday" :key="item.id"
-							:data-id="item.id" :data-index="index">
+					</view> -->
+					<view v-if="flag=='everyday'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in songsList"
+							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.artists[0].name}}</view>
 						</view>
 					</view>
-					推荐电台
-					<view v-else-if="radio">
-						<view class="item" @tap="playthis" v-for="item in radio" :key="item.id"
-							:data-id="item.mainSong.id" :data-index="index">
+					<!-- 推荐电台 -->
+					<view v-else-if="flag=='radio'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in songsList"
+							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.reason}}</view>
 						</view>
 					</view>
-					歌手音乐
+					<!-- 歌手音乐 -->
 					<view v-else-if="searchSong">
-						<view class="item" @tap="playthis" v-for="item in searchSong" :key="item.id"
-							:data-id="item.id" :data-index="index">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in searchSong"
+							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.ar[0].name}}</view>
 						</view>
 					</view>
-					搜索
-					<view v-else-if="searchmusics">
-						<view class="item" @tap="playthis"v-for="item in searchmusics" :key="item.id"
-							:data-id="item.id" :data-index="index">
+					<!-- 搜索 -->
+					<view v-else-if="flag=='search'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in songsList"
+							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.author.name}}</view>
 						</view>
 					</view>
-					我喜欢
-					<view v-else="likeList">
-						<view class="item" @tap="playthis" v-for="item in likeList" :key="item.id"
-							:data-id="item.id" :data-index="index">
+					<!-- 我喜欢 -->
+					<view v-else-if="flag=='like'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item,index) in likeList"
+							:key="item.id" :data-index="index" :data-id="item.id">
 							<view class="name">{{item.names}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.arname}}</view>
 						</view>
-					</view>-->
+					</view>
+					<view v-else-if="flag=='toplist'">
+						<view class="item" @click="playthis(item.id,$event)" v-for="(item ,index) in songsList"
+							:key="item.id" :data-index="index" :data-id="item.id">
+							<view class="name">{{item.name}}</view>
+							<view class="play_list__line">-</view>
+							<view class="singer">{{item.ar[0].name}}</view>
+						</view>
+					</view>
 				</scroll-view>
 				<view class="close-playlist" @tap="closeList">关闭</view>
 			</view>
@@ -170,21 +178,37 @@
 				idx: 0,
 				songPic: '',
 				songArtist: '',
-				bgAudioManager: null
+				bgAudioManager: null,
+				everyday: null,
+				radio: null,
+				searchSong: null,
+				searchmusics: null,
+				songlist: null,
+				likeList: uni.getStorageSync('LlikeSongs')
 			}
 		},
 		onLoad() {
-			console.log(this.id)
 			if (this.id) {
 				this._init()
-				this.getSongList()
+				// this.getSongList()
 			}
-			this.getArtist()
+			// this.getArtist()
+		},
+		onShow() {
+
 		},
 		computed: {
-			...mapState(['id']),
+			...mapState(['id', 'songsList', 'flag', 'likeSongs']),
+		},
+		watch: {
+			id: function() {
+				this._init()
+				// this.getSongList()
+				// this.getArtist()
+			}
 		},
 		methods: {
+			...mapMutations(['change', 'modifySongList']),
 			// 初始化
 			_init(id) {
 				this.getSongData(id)
@@ -206,7 +230,7 @@
 				const result = await requestGet(SongDataURL, {
 					ids: this.id
 				})
-				console.log(result,'==============')
+				console.log(result, '==============')
 				this.songs = result.songs[0];
 				this.songPic = this.songs.al.picUrl
 				this.songArtist = this.songs.ar[0]
@@ -227,21 +251,28 @@
 				this.showLyric = formatLyric(result.lrc.lyric)
 			},
 			// 获取歌单
-			async getSongList(id) {
-				const result = await requestGet(SongListURL, {
-					id: this.id
-				});
-				this.songlist = result.playlist.tracks;
-			},
+			// async getSongList(id) {
+			// 	const result = await requestGet(SongListURL, {
+			// 		id: this.id
+			// 	});
+			// 	this.songlist = result.playlist.tracks;
+			// 	console.log(result)
+			// },
 			// 根据歌手获取歌手的50部歌曲
 			async getArtist() {
 				const result = await requestGet(artistURL)
 				this.songlist = result.songs
 			},
+			async gettopList() {
+				const result = await requestGet(sonList);
+				const listid = result.list[0].id;
+				this.listid = listid
+			},
+			// 点击播放列表播放
+			playthis(id) {
+				console.log(id)
+			},
 			// 创建播放器
-
-
-
 			createBgAudio(res) {
 				if (res.url) {
 					//#ifdef MP-WEIXIN 
@@ -358,29 +389,31 @@
 				this.translateCls = 'downtranslate'
 			},
 			// 播放当前歌曲
-			playthis(e) {
-				this.id = e.currentTarget.dataset.id;
-				this.idx = e.currentTarget.dataset.index;
-				this._init(this.id);
-				this.bgAudioManager.destroy();
+			playthis(id, event) {
+				this.idx = event.currentTarget.dataset.index;
+				this.change(id)
+				// this.bgAudioManager.destroy();
 				this.isPlay = false;
 				this.translateCls = 'downtranslate';
 			},
 			// 播放下一首
 			next() {
+				if (this.flag == 'like') {
+					this.modifySongList(this.likeList)
+				}
 				if (this.id) {
 					this.idx += 1;
 					// 顺序播放
 					if (this.playMod === 1) {
 						// 如果是最后一首则从第一首开始播放
-						if (this.idx === this.songlist.length) {
+						if (this.idx === this.songsList.length) {
 							this.idx = 0;
 							this.playSong()
 						} else {
 							this.playSong()
 						}
 					} else if (this.playMod === 2) {
-						this.idx = Math.ceil(Math.random() * this.songlist.length)
+						this.idx = Math.ceil(Math.random() * this.songsList.length)
 						this.playSong()
 					} else {
 						this.idx = this.idx - 1
@@ -393,19 +426,22 @@
 			},
 			// 播放上一首
 			prev() {
+				if (this.flag == 'like') {
+					this.modifySongList(this.likeList)
+				}
 				if (this.id) {
 					this.idx -= 1;
 					// 顺序播放
 					if (this.playMod === 1) {
 						// 如果是最后一首则从第一首开始播放
 						if (this.idx === -1) {
-							this.idx = this.songlist.length - 1;
+							this.idx = this.songsList.length - 1;
 							this.playSong()
 						} else {
 							this.playSong()
 						}
 					} else if (this.playMod === 2) {
-						this.idx = Math.ceil(Math.random() * this.songlist.length)
+						this.idx = Math.ceil(Math.random() * this.songsList.length)
 						this.playSong()
 					} else {
 						this.idx = this.idx + 1
@@ -416,16 +452,19 @@
 				}
 			},
 			playSong() {
-				this.id = this.songlist[this.idx].id;
-				this._init(this.id)
+				if (this.flag == 'like') {
+					this.modifySongList(this.likeList)
+				}
+				var id = this.songsList[this.idx].id;
 				this.bgAudioManager.stop();
+				this.change(id)
 				this.isPlay = false
 			}
 		}
 	}
 </script>
 
-<style lang="less" >
+<style lang="less">
 	.player {
 		.normal-player {
 			position: fixed;

@@ -224,14 +224,16 @@ var _http = __webpack_require__(/*! ../../utils/http.js */ 34);function _interop
   (0, _vuex.mapState)(['id'])),
 
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapMutations)(['change'])), {}, {
+  (0, _vuex.mapMutations)(['change', 'modifySongList', 'modifyState'])), {}, {
     getList: function getList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   (0, _http.requestGet)(_http.personal, {
                     id: _this.sid }));case 2:result = _context.sent;
 
                 // 获取到数据后清除轻提示
                 _this.content = result.playlist.tracks;
-                _this.imgUrl = result.playlist.coverImgUrl;case 5:case "end":return _context.stop();}}}, _callee);}))();
+                _this.modifySongList(_this.content);
+                _this.modifyState('toplist');
+                _this.imgUrl = result.playlist.coverImgUrl;case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
     player: function player(id) {
       this.change(id);

@@ -52,5 +52,6 @@
       "desc": "1111"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

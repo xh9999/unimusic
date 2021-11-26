@@ -1941,7 +1941,9 @@ var store = (0, _vuex.createStore)({
   state: {
     // 对应的音乐id
     id: '',
-    likeSongs: [] },
+    likeSongs: [],
+    songsList: '',
+    flag: '' },
 
   getters: {
     watcher: function watcher(state) {
@@ -1954,6 +1956,12 @@ var store = (0, _vuex.createStore)({
     },
     addSong: function addSong(state, obj) {
       state.likeSongs.push(obj);
+    },
+    modifySongList: function modifySongList(state, asg) {
+      state.songsList = asg;
+    },
+    modifyState: function modifyState(state, asg) {
+      state.flag = asg;
     } },
 
   actions: {} });var _default =

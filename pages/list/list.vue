@@ -135,7 +135,7 @@
 			...mapState(['id'])
 		},
 		methods: {
-			...mapMutations(['change']),
+			...mapMutations(['change', 'modifySongList', 'modifyState']),
 			player(id) {
 				this.change(id);
 				uni.switchTab({
@@ -154,7 +154,9 @@
 					// #endif
 					// 获取到数据后清除轻提示
 					this.content = result.recommend;
-
+					console.log(this.content, '========')
+					this.modifySongList(this.content)
+					this.modifyState('everyday')
 					// 推荐电台
 				} else if (this.type == 'radio') {
 					var url = radioUrl;
@@ -162,6 +164,9 @@
 						limit: this.limit
 					});
 					this.content = result.programs;
+					this.modifySongList(this.content)
+					console.log(this.content)
+					this.modifyState('radio')
 					// 推荐mv
 				} else if (this.type == 'mv') {
 					var url = mvUrl;

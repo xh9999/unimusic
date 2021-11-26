@@ -249,9 +249,10 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
     }
   },
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapMutations)(['change'])), {}, {
+  (0, _vuex.mapMutations)(['change', 'modifyState'])), {}, {
     click: function click(id) {
       this.change(id);
+      this.modifyState('like');
       uni.switchTab({
         url: "/pages/player/player" });
 

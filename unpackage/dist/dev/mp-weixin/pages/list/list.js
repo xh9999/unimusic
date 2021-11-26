@@ -296,7 +296,7 @@ var _http = __webpack_require__(/*! ../../utils/http.js */ 34);function _interop
   (0, _vuex.mapState)(['id'])),
 
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapMutations)(['change'])), {}, {
+  (0, _vuex.mapMutations)(['change', 'modifySongList', 'modifyState'])), {}, {
     player: function player(id) {
       this.change(id);
       uni.switchTab({
@@ -306,7 +306,7 @@ var _http = __webpack_require__(/*! ../../utils/http.js */ 34);function _interop
     // 每日推荐对应的内容
     getRecommend: function getRecommend() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, url, _result, _result2, _result3;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
 
-                _this2.type == 'new')) {_context.next = 7;break;}_context.next = 3;return (
+                _this2.type == 'new')) {_context.next = 10;break;}_context.next = 3;return (
 
                   (0, _http.requestGet)(_http.newSong));case 3:result = _context.sent;
 
@@ -315,30 +315,35 @@ var _http = __webpack_require__(/*! ../../utils/http.js */ 34);function _interop
 
                 // 获取到数据后清除轻提示
                 _this2.content = result.recommend;
-
+                console.log(_this2.content, '========');
+                _this2.modifySongList(_this2.content);
+                _this2.modifyState('everyday');
                 // 推荐电台
-                _context.next = 28;break;case 7:if (!(_this2.type == 'radio')) {_context.next = 15;break;}
-                url = _http.radioUrl;_context.next = 11;return (
+                _context.next = 34;break;case 10:if (!(_this2.type == 'radio')) {_context.next = 21;break;}
+                url = _http.radioUrl;_context.next = 14;return (
                   (0, _http.requestGet)(url, {
-                    limit: _this2.limit }));case 11:_result = _context.sent;
+                    limit: _this2.limit }));case 14:_result = _context.sent;
 
                 _this2.content = _result.programs;
+                _this2.modifySongList(_this2.content);
+                console.log(_this2.content);
+                _this2.modifyState('radio');
                 // 推荐mv
-                _context.next = 28;break;case 15:if (!(_this2.type == 'mv')) {_context.next = 23;break;}
-                url = _http.mvUrl;_context.next = 19;return (
+                _context.next = 34;break;case 21:if (!(_this2.type == 'mv')) {_context.next = 29;break;}
+                url = _http.mvUrl;_context.next = 25;return (
                   (0, _http.requestGet)(url, {
-                    limit: _this2.limit }));case 19:_result2 = _context.sent;
+                    limit: _this2.limit }));case 25:_result2 = _context.sent;
 
                 // 获取到数据后清除轻提示
                 _this2.content = _result2.data;
                 // 推荐歌单
-                _context.next = 28;break;case 23:
-                url = _http.hotUrl;_context.next = 26;return (
+                _context.next = 34;break;case 29:
+                url = _http.hotUrl;_context.next = 32;return (
                   (0, _http.requestGet)(url, {
-                    limit: _this2.limit }));case 26:_result3 = _context.sent;
+                    limit: _this2.limit }));case 32:_result3 = _context.sent;
 
                 // 获取到数据后清除轻提示
-                _this2.content = _result3.recommend;case 28:case "end":return _context.stop();}}}, _callee);}))();
+                _this2.content = _result3.recommend;case 34:case "end":return _context.stop();}}}, _callee);}))();
 
     },
     // 获取mv的地址

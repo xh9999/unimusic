@@ -47,7 +47,7 @@
 			}
 		},
 		methods: {
-			...mapMutations(['change']),
+			...mapMutations(['change','modifySongList','modifyState']),
 			async search(e) {
 				this.musics = [];
 				this.offset = 0;
@@ -75,6 +75,10 @@
 						duration,
 					});
 				});
+				this.modifySongList(this.musics)
+				this.modifyState('search')
+				console.log(this.musics,'=========')
+				
 			},
 			cancel() {
 				this.musics = [];

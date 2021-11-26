@@ -63,13 +63,15 @@
 			...mapState(['id'])
 		},
 		methods: {
-			...mapMutations(['change']),
+			...mapMutations(['change', 'modifySongList', 'modifyState']),
 			async getList() {
 				var result = await requestGet(personal, {
 					id: this.sid
 				});
 				// 获取到数据后清除轻提示
 				this.content = result.playlist.tracks;
+				this.modifySongList(this.content)
+				this.modifyState('toplist')
 				this.imgUrl = result.playlist.coverImgUrl;
 			},
 			player(id) {

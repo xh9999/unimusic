@@ -269,6 +269,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 14);
 
 
@@ -282,7 +290,7 @@ var _http = __webpack_require__(/*! @/utils/http.js */ 34);
 
 
 
-var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+var _format = __webpack_require__(/*! @/utils/format.js */ 89);var _objectSpread2;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
 
 
@@ -291,8 +299,8 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interop
 
 
 {
-  data: function data() {
-    return {
+  data: function data() {var _ref;
+    return _ref = {
       songs: [],
       isPlay: false,
       currentDot: 0,
@@ -311,21 +319,37 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interop
       idx: 0,
       songPic: '',
       songArtist: '',
-      bgAudioManager: null };
+      bgAudioManager: null,
+      everyday: null,
+      radio: null,
+      searchSong: null,
+      searchmusics: null }, _defineProperty(_ref, "songlist",
+    null), _defineProperty(_ref, "likeList",
+    uni.getStorageSync('LlikeSongs')), _ref;
 
   },
   onLoad: function onLoad() {
-    console.log(this.id);
     if (this.id) {
       this._init();
-      this.getSongList();
+      // this.getSongList()
     }
-    this.getArtist();
+    // this.getArtist()
+  },
+  onShow: function onShow() {
+
   },
   computed: _objectSpread({},
-  (0, _vuex.mapState)(['id'])),
+  (0, _vuex.mapState)(['id', 'songsList', 'flag', 'likeSongs'])),
 
-  methods: {
+  watch: {
+    id: function id() {
+      this._init();
+      // this.getSongList()
+      // this.getArtist()
+    } },
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['change', 'modifySongList'])), {}, (_objectSpread2 = {
     // 初始化
     _init: function _init(id) {
       this.getSongData(id);
@@ -368,21 +392,28 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interop
                 _this3.showLyric = (0, _format.formatLyric)(result.lrc.lyric);case 4:case "end":return _context3.stop();}}}, _callee3);}))();
     },
     // 获取歌单
-    getSongList: function getSongList(id) {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
-                  (0, _http.requestGet)(_http.SongListURL, {
-                    id: _this4.id }));case 2:result = _context4.sent;
-
-                _this4.songlist = result.playlist.tracks;case 4:case "end":return _context4.stop();}}}, _callee4);}))();
-    },
+    // async getSongList(id) {
+    // 	const result = await requestGet(SongListURL, {
+    // 		id: this.id
+    // 	});
+    // 	this.songlist = result.playlist.tracks;
+    // 	console.log(result)
+    // },
     // 根据歌手获取歌手的50部歌曲
-    getArtist: function getArtist() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
-                  (0, _http.requestGet)(_http.artistURL));case 2:result = _context5.sent;
-                _this5.songlist = result.songs;case 4:case "end":return _context5.stop();}}}, _callee5);}))();
+    getArtist: function getArtist() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  (0, _http.requestGet)(_http.artistURL));case 2:result = _context4.sent;
+                _this4.songlist = result.songs;case 4:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
+    gettopList: function gettopList() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var result, listid;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  (0, _http.requestGet)(sonList));case 2:result = _context5.sent;
+                listid = result.list[0].id;
+                _this5.listid = listid;case 5:case "end":return _context5.stop();}}}, _callee5);}))();
+    },
+    // 点击播放列表播放
+    playthis: function playthis(id) {
+      console.log(id);
     },
     // 创建播放器
-
-
-
     createBgAudio: function createBgAudio(res) {var _this6 = this;
       if (res.url) {
 
@@ -497,71 +528,79 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interop
     // 关闭播放列表
     closeList: function closeList() {
       this.translateCls = 'downtranslate';
-    },
-    // 播放当前歌曲
-    playthis: function playthis(e) {
-      this.id = e.currentTarget.dataset.id;
-      this.idx = e.currentTarget.dataset.index;
-      this._init(this.id);
-      this.bgAudioManager.destroy();
-      this.isPlay = false;
-      this.translateCls = 'downtranslate';
-    },
-    // 播放下一首
-    next: function next() {
-      if (this.id) {
-        this.idx += 1;
-        // 顺序播放
-        if (this.playMod === 1) {
-          // 如果是最后一首则从第一首开始播放
-          if (this.idx === this.songlist.length) {
-            this.idx = 0;
-            this.playSong();
-          } else {
-            this.playSong();
-          }
-        } else if (this.playMod === 2) {
-          this.idx = Math.ceil(Math.random() * this.songlist.length);
-          this.playSong();
-        } else {
-          this.idx = this.idx - 1;
-          this.playSong();
-        }
-      } else {
-        (0, _format.showToast)('暂无歌曲 ');
-      }
+    } }, _defineProperty(_objectSpread2, "playthis", function playthis(
 
-    },
-    // 播放上一首
-    prev: function prev() {
-      if (this.id) {
-        this.idx -= 1;
-        // 顺序播放
-        if (this.playMod === 1) {
-          // 如果是最后一首则从第一首开始播放
-          if (this.idx === -1) {
-            this.idx = this.songlist.length - 1;
-            this.playSong();
-          } else {
-            this.playSong();
-          }
-        } else if (this.playMod === 2) {
-          this.idx = Math.ceil(Math.random() * this.songlist.length);
+  id, event) {
+    this.idx = event.currentTarget.dataset.index;
+    this.change(id);
+    // this.bgAudioManager.destroy();
+    this.isPlay = false;
+    this.translateCls = 'downtranslate';
+  }), _defineProperty(_objectSpread2, "next", function next()
+
+  {
+    if (this.flag == 'like') {
+      this.modifySongList(this.likeList);
+    }
+    if (this.id) {
+      this.idx += 1;
+      // 顺序播放
+      if (this.playMod === 1) {
+        // 如果是最后一首则从第一首开始播放
+        if (this.idx === this.songsList.length) {
+          this.idx = 0;
           this.playSong();
         } else {
-          this.idx = this.idx + 1;
           this.playSong();
         }
+      } else if (this.playMod === 2) {
+        this.idx = Math.ceil(Math.random() * this.songsList.length);
+        this.playSong();
       } else {
-        (0, _format.showToast)('暂无歌曲 ');
+        this.idx = this.idx - 1;
+        this.playSong();
       }
-    },
-    playSong: function playSong() {
-      this.id = this.songlist[this.idx].id;
-      this._init(this.id);
-      this.bgAudioManager.stop();
-      this.isPlay = false;
-    } } };exports.default = _default;
+    } else {
+      (0, _format.showToast)('暂无歌曲 ');
+    }
+
+  }), _defineProperty(_objectSpread2, "prev", function prev()
+
+  {
+    if (this.flag == 'like') {
+      this.modifySongList(this.likeList);
+    }
+    if (this.id) {
+      this.idx -= 1;
+      // 顺序播放
+      if (this.playMod === 1) {
+        // 如果是最后一首则从第一首开始播放
+        if (this.idx === -1) {
+          this.idx = this.songsList.length - 1;
+          this.playSong();
+        } else {
+          this.playSong();
+        }
+      } else if (this.playMod === 2) {
+        this.idx = Math.ceil(Math.random() * this.songsList.length);
+        this.playSong();
+      } else {
+        this.idx = this.idx + 1;
+        this.playSong();
+      }
+    } else {
+      (0, _format.showToast)('暂无歌曲 ');
+    }
+  }), _defineProperty(_objectSpread2, "playSong", function playSong()
+  {
+    if (this.flag == 'like') {
+      this.modifySongList(this.likeList);
+    }
+    var id = this.songsList[this.idx].id;
+    this.bgAudioManager.stop();
+    this.change(id);
+    this.isPlay = false;
+  }), _objectSpread2)) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
 
 /***/ }),

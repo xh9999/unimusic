@@ -85,9 +85,10 @@
 			}
 		},
 		methods: {
-			...mapMutations(['change']),
+			...mapMutations(['change','modifyState']),
 			click(id) {
 				this.change(id);
+				this.modifyState('like')
 				uni.switchTab({
 					url: `/pages/player/player`,
 				})

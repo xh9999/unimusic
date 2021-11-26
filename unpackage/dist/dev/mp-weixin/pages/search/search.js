@@ -215,7 +215,7 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
 
   },
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapMutations)(['change'])), {}, {
+  (0, _vuex.mapMutations)(['change', 'modifySongList', 'modifyState'])), {}, {
     search: function search(e) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var songslist, songs;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 _this.musics = [];
                 _this.offset = 0;
@@ -242,7 +242,11 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
                     author: (0, _search.handleStr)(artists[0]),
                     duration: duration });
 
-                });case 9:case "end":return _context.stop();}}}, _callee);}))();
+                });
+                _this.modifySongList(_this.musics);
+                _this.modifyState('search');
+                console.log(_this.musics, '=========');case 12:case "end":return _context.stop();}}}, _callee);}))();
+
     },
     cancel: function cancel() {
       this.musics = [];
