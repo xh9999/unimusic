@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uniCollapse: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-collapse/components/uni-collapse/uni-collapse */ "uni_modules/uni-collapse/components/uni-collapse/uni-collapse").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-collapse/components/uni-collapse/uni-collapse.vue */ 175))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-collapse/components/uni-collapse/uni-collapse */ "uni_modules/uni-collapse/components/uni-collapse/uni-collapse").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-collapse/components/uni-collapse/uni-collapse.vue */ 164))
     },
     uniCollapseItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item */ "uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item.vue */ 182))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item */ "uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item.vue */ 171))
     },
     uniPopup: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 113))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 101))
     },
     uniPopupMessage: function() {
-      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-message/uni-popup-message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-message/uni-popup-message")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.vue */ 120))
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-message/uni-popup-message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-message/uni-popup-message")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.vue */ 108))
     }
   }
 } catch (e) {

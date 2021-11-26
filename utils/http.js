@@ -106,4 +106,6 @@ export var musicDetail = "http://121.5.237.135:3000/song/detail"; //传入歌曲
 // mv评论
 export var mvcomment = "http://121.5.237.135:3000/comment/mv";
 // 喜欢列表
-export var likeList = "http://121.5.237.135:3000/likelist"
+export var likeList = "http://121.5.237.135:3000/likelist";
+export var searchUrl = "http://121.5.237.135:3000/search";
+export var searchHotUrl = "http://121.5.237.135:3000/search/hot";
