@@ -8,7 +8,7 @@
 				<view class="title">{{songs.name}}</view>
 				<view class="subtitle">{{songArtist.name}}</view>
 			</view>
-			<swiper class="middle" style="height: 280px;" @change="changeDot">
+			<swiper class="middle" style="height: 300px;" @change="changeDot">
 				<swiper-item class="middle-l" style="overflow:visible">
 					<view class="cd-wrapper">
 						<view class="cd" :class="[isPlay ? 'play':'']">
