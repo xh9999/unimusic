@@ -1,1 +1,1 @@
-<view>播放页面</view>
+<view><button type="default" data-event-opts="{{[['tap',[['stop',['$event']]]]]}}" bindtap="__e">暂停</button><button type="default" data-event-opts="{{[['tap',[['play',['$event']]]]]}}" bindtap="__e">播放</button></view>
