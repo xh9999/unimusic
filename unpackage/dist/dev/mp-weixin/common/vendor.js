@@ -697,7 +697,7 @@ const getGlobalThis = () => {
 
 /***/ }),
 
-/***/ 116:
+/***/ 119:
 /*!***********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \***********************************************************************************************/
@@ -1961,488 +1961,6 @@ var store = (0, _vuex.createStore)({
 
 
 store;exports.default = _default;
-
-/***/ }),
-
-/***/ 138:
-/*!*************************************************************!*\
-  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni, global) {Object.defineProperty(exports, "__esModule", { value: true });exports.compileI18nJsonStr = compileI18nJsonStr;exports.hasI18nJson = hasI18nJson;exports.initVueI18n = initVueI18n;exports.isI18nStr = isI18nStr;exports.normalizeLocale = normalizeLocale;exports.parseI18nJson = parseI18nJson;exports.resolveLocale = resolveLocale;exports.isString = exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var isArray = Array.isArray;
-var isObject = function isObject(val) {return val !== null && typeof val === 'object';};
-var defaultDelimiters = ['{', '}'];var
-BaseFormatter = /*#__PURE__*/function () {
-  function BaseFormatter() {_classCallCheck(this, BaseFormatter);
-    this._caches = Object.create(null);
-  }_createClass(BaseFormatter, [{ key: "interpolate", value: function interpolate(
-    message, values) {var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
-      if (!values) {
-        return [message];
-      }
-      var tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message, delimiters);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    } }]);return BaseFormatter;}();exports.Formatter = BaseFormatter;
-
-var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter = _ref2[0],endDelimiter = _ref2[1];
-  var tokens = [];
-  var position = 0;
-  var text = '';
-  while (position < format.length) {
-    var char = format[position++];
-    if (char === startDelimiter) {
-      if (text) {
-        tokens.push({ type: 'text', value: text });
-      }
-      text = '';
-      var sub = '';
-      char = format[position++];
-      while (char !== undefined && char !== endDelimiter) {
-        sub += char;
-        char = format[position++];
-      }
-      var isClosed = char === endDelimiter;
-      var type = RE_TOKEN_LIST_VALUE.test(sub) ?
-      'list' :
-      isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ?
-      'named' :
-      'unknown';
-      tokens.push({ value: sub, type: type });
-    }
-    //  else if (char === '%') {
-    //   // when found rails i18n syntax, skip text capture
-    //   if (format[position] !== '{') {
-    //     text += char
-    //   }
-    // }
-    else {
-        text += char;
-      }
-  }
-  text && tokens.push({ type: 'text', value: text });
-  return tokens;
-}
-function compile(tokens, values) {
-  var compiled = [];
-  var index = 0;
-  var mode = isArray(values) ?
-  'list' :
-  isObject(values) ?
-  'named' :
-  'unknown';
-  if (mode === 'unknown') {
-    return compiled;
-  }
-  while (index < tokens.length) {
-    var token = tokens[index];
-    switch (token.type) {
-      case 'text':
-        compiled.push(token.value);
-        break;
-      case 'list':
-        compiled.push(values[parseInt(token.value, 10)]);
-        break;
-      case 'named':
-        if (mode === 'named') {
-          compiled.push(values[token.value]);
-        } else
-        {
-          if (true) {
-            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
-          }
-        }
-        break;
-      case 'unknown':
-        if (true) {
-          console.warn("Detect 'unknown' type of token!");
-        }
-        break;}
-
-    index++;
-  }
-  return compiled;
-}
-
-var LOCALE_ZH_HANS = 'zh-Hans';exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
-var LOCALE_ZH_HANT = 'zh-Hant';exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
-var LOCALE_EN = 'en';exports.LOCALE_EN = LOCALE_EN;
-var LOCALE_FR = 'fr';exports.LOCALE_FR = LOCALE_FR;
-var LOCALE_ES = 'es';exports.LOCALE_ES = LOCALE_ES;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var hasOwn = function hasOwn(val, key) {return hasOwnProperty.call(val, key);};
-var defaultFormatter = new BaseFormatter();
-function include(str, parts) {
-  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
-}
-function startsWith(str, parts) {
-  return parts.find(function (part) {return str.indexOf(part) === 0;});
-}
-function normalizeLocale(locale, messages) {
-  if (!locale) {
-    return;
-  }
-  locale = locale.trim().replace(/_/g, '-');
-  if (messages && messages[locale]) {
-    return locale;
-  }
-  locale = locale.toLowerCase();
-  if (locale.indexOf('zh') === 0) {
-    if (locale.indexOf('-hans') > -1) {
-      return LOCALE_ZH_HANS;
-    }
-    if (locale.indexOf('-hant') > -1) {
-      return LOCALE_ZH_HANT;
-    }
-    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
-      return LOCALE_ZH_HANT;
-    }
-    return LOCALE_ZH_HANS;
-  }
-  var lang = startsWith(locale, [LOCALE_EN, LOCALE_FR, LOCALE_ES]);
-  if (lang) {
-    return lang;
-  }
-}var
-I18n = /*#__PURE__*/function () {
-  function I18n(_ref3) {var locale = _ref3.locale,fallbackLocale = _ref3.fallbackLocale,messages = _ref3.messages,watcher = _ref3.watcher,formater = _ref3.formater;_classCallCheck(this, I18n);
-    this.locale = LOCALE_EN;
-    this.fallbackLocale = LOCALE_EN;
-    this.message = {};
-    this.messages = {};
-    this.watchers = [];
-    if (fallbackLocale) {
-      this.fallbackLocale = fallbackLocale;
-    }
-    this.formater = formater || defaultFormatter;
-    this.messages = messages || {};
-    this.setLocale(locale || LOCALE_EN);
-    if (watcher) {
-      this.watchLocale(watcher);
-    }
-  }_createClass(I18n, [{ key: "setLocale", value: function setLocale(
-    locale) {var _this = this;
-      var oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      if (!this.messages[this.locale]) {
-        // 可能初始化时不存在
-        this.messages[this.locale] = {};
-      }
-      this.message = this.messages[this.locale];
-      // 仅发生变化时，通知
-      if (oldLocale !== this.locale) {
-        this.watchers.forEach(function (watcher) {
-          watcher(_this.locale, oldLocale);
-        });
-      }
-    } }, { key: "getLocale", value: function getLocale()
-    {
-      return this.locale;
-    } }, { key: "watchLocale", value: function watchLocale(
-    fn) {var _this2 = this;
-      var index = this.watchers.push(fn) - 1;
-      return function () {
-        _this2.watchers.splice(index, 1);
-      };
-    } }, { key: "add", value: function add(
-    locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var curMessages = this.messages[locale];
-      if (curMessages) {
-        if (override) {
-          Object.assign(curMessages, message);
-        } else
-        {
-          Object.keys(message).forEach(function (key) {
-            if (!hasOwn(curMessages, key)) {
-              curMessages[key] = message[key];
-            }
-          });
-        }
-      } else
-      {
-        this.messages[locale] = message;
-      }
-    } }, { key: "f", value: function f(
-    message, values, delimiters) {
-      return this.formater.interpolate(message, values, delimiters).join('');
-    } }, { key: "t", value: function t(
-    key, locale, values) {
-      var message = this.message;
-      if (typeof locale === 'string') {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else
-      {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join('');
-    } }]);return I18n;}();exports.I18n = I18n;
-
-
-function watchAppLocale(appVm, i18n) {
-  // 需要保证 watch 的触发在组件渲染之前
-  if (appVm.$watchLocale) {
-    // vue2
-    appVm.$watchLocale(function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  } else
-  {
-    appVm.$watch(function () {return appVm.$locale;}, function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  }
-}
-function getDefaultLocale() {
-  if (typeof uni !== 'undefined' && uni.getLocale) {
-    return uni.getLocale();
-  }
-  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
-  if (typeof global !== 'undefined' && global.getLocale) {
-    return global.getLocale();
-  }
-  return LOCALE_EN;
-}
-function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;var watcher = arguments.length > 3 ? arguments[3] : undefined;
-  // 兼容旧版本入参
-  if (typeof locale !== 'string') {var _ref4 =
-    [
-    messages,
-    locale];locale = _ref4[0];messages = _ref4[1];
-
-  }
-  if (typeof locale !== 'string') {
-    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
-    locale = getDefaultLocale();
-  }
-  if (typeof fallbackLocale !== 'string') {
-    fallbackLocale =
-    typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale ||
-    LOCALE_EN;
-  }
-  var i18n = new I18n({
-    locale: locale,
-    fallbackLocale: fallbackLocale,
-    messages: messages,
-    watcher: watcher });
-
-  var _t = function t(key, values) {
-    if (typeof getApp !== 'function') {
-      // app view
-      /* eslint-disable no-func-assign */
-      _t = function t(key, values) {
-        return i18n.t(key, values);
-      };
-    } else
-    {
-      var isWatchedAppLocale = false;
-      _t = function t(key, values) {
-        var appVm = getApp().$vm;
-        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
-        // options: {
-        // 	type: Array,
-        // 	default () {
-        // 		return [{
-        // 			icon: 'shop',
-        // 			text: t("uni-goods-nav.options.shop"),
-        // 		}, {
-        // 			icon: 'cart',
-        // 			text: t("uni-goods-nav.options.cart")
-        // 		}]
-        // 	}
-        // },
-        if (appVm) {
-          // 触发响应式
-          appVm.$locale;
-          if (!isWatchedAppLocale) {
-            isWatchedAppLocale = true;
-            watchAppLocale(appVm, i18n);
-          }
-        }
-        return i18n.t(key, values);
-      };
-    }
-    return _t(key, values);
-  };
-  return {
-    i18n: i18n,
-    f: function f(message, values, delimiters) {
-      return i18n.f(message, values, delimiters);
-    },
-    t: function t(key, values) {
-      return _t(key, values);
-    },
-    add: function add(locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      return i18n.add(locale, message, override);
-    },
-    watch: function watch(fn) {
-      return i18n.watchLocale(fn);
-    },
-    getLocale: function getLocale() {
-      return i18n.getLocale();
-    },
-    setLocale: function setLocale(newLocale) {
-      return i18n.setLocale(newLocale);
-    } };
-
-}
-
-var isString = function isString(val) {return typeof val === 'string';};exports.isString = isString;
-var formater;
-function hasI18nJson(jsonObj, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  return walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        return true;
-      }
-    } else
-    {
-      return hasI18nJson(value, delimiters);
-    }
-  });
-}
-function parseI18nJson(jsonObj, values, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        jsonObj[key] = compileStr(value, values, delimiters);
-      }
-    } else
-    {
-      parseI18nJson(value, values, delimiters);
-    }
-  });
-  return jsonObj;
-}
-function compileI18nJsonStr(jsonStr, _ref5) {var locale = _ref5.locale,locales = _ref5.locales,delimiters = _ref5.delimiters;
-  if (!isI18nStr(jsonStr, delimiters)) {
-    return jsonStr;
-  }
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  var localeValues = [];
-  Object.keys(locales).forEach(function (name) {
-    if (name !== locale) {
-      localeValues.push({
-        locale: name,
-        values: locales[name] });
-
-    }
-  });
-  localeValues.unshift({ locale: locale, values: locales[locale] });
-  try {
-    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
-  }
-  catch (e) {}
-  return jsonStr;
-}
-function isI18nStr(value, delimiters) {
-  return value.indexOf(delimiters[0]) > -1;
-}
-function compileStr(value, values, delimiters) {
-  return formater.interpolate(value, values, delimiters).join('');
-}
-function compileValue(jsonObj, key, localeValues, delimiters) {
-  var value = jsonObj[key];
-  if (isString(value)) {
-    // 存在国际化
-    if (isI18nStr(value, delimiters)) {
-      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
-      if (localeValues.length > 1) {
-        // 格式化国际化语言
-        var valueLocales = jsonObj[key + 'Locales'] = {};
-        localeValues.forEach(function (localValue) {
-          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
-        });
-      }
-    }
-  } else
-  {
-    compileJsonObj(value, localeValues, delimiters);
-  }
-}
-function compileJsonObj(jsonObj, localeValues, delimiters) {
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    compileValue(jsonObj, key, localeValues, delimiters);
-  });
-  return jsonObj;
-}
-function walkJsonObj(jsonObj, walk) {
-  if (isArray(jsonObj)) {
-    for (var i = 0; i < jsonObj.length; i++) {
-      if (walk(jsonObj, i)) {
-        return true;
-      }
-    }
-  } else
-  if (isObject(jsonObj)) {
-    for (var key in jsonObj) {
-      if (walk(jsonObj, key)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
-function resolveLocale(locales) {
-  return function (locale) {
-    if (!locale) {
-      return locale;
-    }
-    locale = normalizeLocale(locale) || locale;
-    return resolveLocaleChain(locale).find(function (locale) {return locales.indexOf(locale) > -1;});
-  };
-}
-function resolveLocaleChain(locale) {
-  var chain = [];
-  var tokens = locale.split('-');
-  while (tokens.length) {
-    chain.push(tokens.join('-'));
-    tokens.pop();
-  }
-  return chain;
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 10)))
-
-/***/ }),
-
-/***/ 139:
-/*!************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
-  \************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 140));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 141));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 142));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
-{
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default };exports.default = _default;
 
 /***/ }),
 
@@ -3932,7 +3450,489 @@ module.exports = index_cjs
 
 /***/ }),
 
-/***/ 140:
+/***/ 141:
+/*!*************************************************************!*\
+  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, global) {Object.defineProperty(exports, "__esModule", { value: true });exports.compileI18nJsonStr = compileI18nJsonStr;exports.hasI18nJson = hasI18nJson;exports.initVueI18n = initVueI18n;exports.isI18nStr = isI18nStr;exports.normalizeLocale = normalizeLocale;exports.parseI18nJson = parseI18nJson;exports.resolveLocale = resolveLocale;exports.isString = exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var isArray = Array.isArray;
+var isObject = function isObject(val) {return val !== null && typeof val === 'object';};
+var defaultDelimiters = ['{', '}'];var
+BaseFormatter = /*#__PURE__*/function () {
+  function BaseFormatter() {_classCallCheck(this, BaseFormatter);
+    this._caches = Object.create(null);
+  }_createClass(BaseFormatter, [{ key: "interpolate", value: function interpolate(
+    message, values) {var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
+      if (!values) {
+        return [message];
+      }
+      var tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    } }]);return BaseFormatter;}();exports.Formatter = BaseFormatter;
+
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter = _ref2[0],endDelimiter = _ref2[1];
+  var tokens = [];
+  var position = 0;
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === startDelimiter) {
+      if (text) {
+        tokens.push({ type: 'text', value: text });
+      }
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== endDelimiter) {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === endDelimiter;
+      var type = RE_TOKEN_LIST_VALUE.test(sub) ?
+      'list' :
+      isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ?
+      'named' :
+      'unknown';
+      tokens.push({ value: sub, type: type });
+    }
+    //  else if (char === '%') {
+    //   // when found rails i18n syntax, skip text capture
+    //   if (format[position] !== '{') {
+    //     text += char
+    //   }
+    // }
+    else {
+        text += char;
+      }
+  }
+  text && tokens.push({ type: 'text', value: text });
+  return tokens;
+}
+function compile(tokens, values) {
+  var compiled = [];
+  var index = 0;
+  var mode = isArray(values) ?
+  'list' :
+  isObject(values) ?
+  'named' :
+  'unknown';
+  if (mode === 'unknown') {
+    return compiled;
+  }
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break;
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break;
+      case 'named':
+        if (mode === 'named') {
+          compiled.push(values[token.value]);
+        } else
+        {
+          if (true) {
+            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
+          }
+        }
+        break;
+      case 'unknown':
+        if (true) {
+          console.warn("Detect 'unknown' type of token!");
+        }
+        break;}
+
+    index++;
+  }
+  return compiled;
+}
+
+var LOCALE_ZH_HANS = 'zh-Hans';exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
+var LOCALE_ZH_HANT = 'zh-Hant';exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
+var LOCALE_EN = 'en';exports.LOCALE_EN = LOCALE_EN;
+var LOCALE_FR = 'fr';exports.LOCALE_FR = LOCALE_FR;
+var LOCALE_ES = 'es';exports.LOCALE_ES = LOCALE_ES;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = function hasOwn(val, key) {return hasOwnProperty.call(val, key);};
+var defaultFormatter = new BaseFormatter();
+function include(str, parts) {
+  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
+}
+function startsWith(str, parts) {
+  return parts.find(function (part) {return str.indexOf(part) === 0;});
+}
+function normalizeLocale(locale, messages) {
+  if (!locale) {
+    return;
+  }
+  locale = locale.trim().replace(/_/g, '-');
+  if (messages && messages[locale]) {
+    return locale;
+  }
+  locale = locale.toLowerCase();
+  if (locale.indexOf('zh') === 0) {
+    if (locale.indexOf('-hans') > -1) {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf('-hant') > -1) {
+      return LOCALE_ZH_HANT;
+    }
+    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
+      return LOCALE_ZH_HANT;
+    }
+    return LOCALE_ZH_HANS;
+  }
+  var lang = startsWith(locale, [LOCALE_EN, LOCALE_FR, LOCALE_ES]);
+  if (lang) {
+    return lang;
+  }
+}var
+I18n = /*#__PURE__*/function () {
+  function I18n(_ref3) {var locale = _ref3.locale,fallbackLocale = _ref3.fallbackLocale,messages = _ref3.messages,watcher = _ref3.watcher,formater = _ref3.formater;_classCallCheck(this, I18n);
+    this.locale = LOCALE_EN;
+    this.fallbackLocale = LOCALE_EN;
+    this.message = {};
+    this.messages = {};
+    this.watchers = [];
+    if (fallbackLocale) {
+      this.fallbackLocale = fallbackLocale;
+    }
+    this.formater = formater || defaultFormatter;
+    this.messages = messages || {};
+    this.setLocale(locale || LOCALE_EN);
+    if (watcher) {
+      this.watchLocale(watcher);
+    }
+  }_createClass(I18n, [{ key: "setLocale", value: function setLocale(
+    locale) {var _this = this;
+      var oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        // 可能初始化时不存在
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      // 仅发生变化时，通知
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach(function (watcher) {
+          watcher(_this.locale, oldLocale);
+        });
+      }
+    } }, { key: "getLocale", value: function getLocale()
+    {
+      return this.locale;
+    } }, { key: "watchLocale", value: function watchLocale(
+    fn) {var _this2 = this;
+      var index = this.watchers.push(fn) - 1;
+      return function () {
+        _this2.watchers.splice(index, 1);
+      };
+    } }, { key: "add", value: function add(
+    locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else
+        {
+          Object.keys(message).forEach(function (key) {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else
+      {
+        this.messages[locale] = message;
+      }
+    } }, { key: "f", value: function f(
+    message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join('');
+    } }, { key: "t", value: function t(
+    key, locale, values) {
+      var message = this.message;
+      if (typeof locale === 'string') {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else
+      {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join('');
+    } }]);return I18n;}();exports.I18n = I18n;
+
+
+function watchAppLocale(appVm, i18n) {
+  // 需要保证 watch 的触发在组件渲染之前
+  if (appVm.$watchLocale) {
+    // vue2
+    appVm.$watchLocale(function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  } else
+  {
+    appVm.$watch(function () {return appVm.$locale;}, function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  }
+}
+function getDefaultLocale() {
+  if (typeof uni !== 'undefined' && uni.getLocale) {
+    return uni.getLocale();
+  }
+  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
+  if (typeof global !== 'undefined' && global.getLocale) {
+    return global.getLocale();
+  }
+  return LOCALE_EN;
+}
+function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;var watcher = arguments.length > 3 ? arguments[3] : undefined;
+  // 兼容旧版本入参
+  if (typeof locale !== 'string') {var _ref4 =
+    [
+    messages,
+    locale];locale = _ref4[0];messages = _ref4[1];
+
+  }
+  if (typeof locale !== 'string') {
+    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
+    locale = getDefaultLocale();
+  }
+  if (typeof fallbackLocale !== 'string') {
+    fallbackLocale =
+    typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale ||
+    LOCALE_EN;
+  }
+  var i18n = new I18n({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    watcher: watcher });
+
+  var _t = function t(key, values) {
+    if (typeof getApp !== 'function') {
+      // app view
+      /* eslint-disable no-func-assign */
+      _t = function t(key, values) {
+        return i18n.t(key, values);
+      };
+    } else
+    {
+      var isWatchedAppLocale = false;
+      _t = function t(key, values) {
+        var appVm = getApp().$vm;
+        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
+        // options: {
+        // 	type: Array,
+        // 	default () {
+        // 		return [{
+        // 			icon: 'shop',
+        // 			text: t("uni-goods-nav.options.shop"),
+        // 		}, {
+        // 			icon: 'cart',
+        // 			text: t("uni-goods-nav.options.cart")
+        // 		}]
+        // 	}
+        // },
+        if (appVm) {
+          // 触发响应式
+          appVm.$locale;
+          if (!isWatchedAppLocale) {
+            isWatchedAppLocale = true;
+            watchAppLocale(appVm, i18n);
+          }
+        }
+        return i18n.t(key, values);
+      };
+    }
+    return _t(key, values);
+  };
+  return {
+    i18n: i18n,
+    f: function f(message, values, delimiters) {
+      return i18n.f(message, values, delimiters);
+    },
+    t: function t(key, values) {
+      return _t(key, values);
+    },
+    add: function add(locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      return i18n.add(locale, message, override);
+    },
+    watch: function watch(fn) {
+      return i18n.watchLocale(fn);
+    },
+    getLocale: function getLocale() {
+      return i18n.getLocale();
+    },
+    setLocale: function setLocale(newLocale) {
+      return i18n.setLocale(newLocale);
+    } };
+
+}
+
+var isString = function isString(val) {return typeof val === 'string';};exports.isString = isString;
+var formater;
+function hasI18nJson(jsonObj, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  return walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        return true;
+      }
+    } else
+    {
+      return hasI18nJson(value, delimiters);
+    }
+  });
+}
+function parseI18nJson(jsonObj, values, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        jsonObj[key] = compileStr(value, values, delimiters);
+      }
+    } else
+    {
+      parseI18nJson(value, values, delimiters);
+    }
+  });
+  return jsonObj;
+}
+function compileI18nJsonStr(jsonStr, _ref5) {var locale = _ref5.locale,locales = _ref5.locales,delimiters = _ref5.delimiters;
+  if (!isI18nStr(jsonStr, delimiters)) {
+    return jsonStr;
+  }
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  var localeValues = [];
+  Object.keys(locales).forEach(function (name) {
+    if (name !== locale) {
+      localeValues.push({
+        locale: name,
+        values: locales[name] });
+
+    }
+  });
+  localeValues.unshift({ locale: locale, values: locales[locale] });
+  try {
+    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
+  }
+  catch (e) {}
+  return jsonStr;
+}
+function isI18nStr(value, delimiters) {
+  return value.indexOf(delimiters[0]) > -1;
+}
+function compileStr(value, values, delimiters) {
+  return formater.interpolate(value, values, delimiters).join('');
+}
+function compileValue(jsonObj, key, localeValues, delimiters) {
+  var value = jsonObj[key];
+  if (isString(value)) {
+    // 存在国际化
+    if (isI18nStr(value, delimiters)) {
+      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
+      if (localeValues.length > 1) {
+        // 格式化国际化语言
+        var valueLocales = jsonObj[key + 'Locales'] = {};
+        localeValues.forEach(function (localValue) {
+          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
+        });
+      }
+    }
+  } else
+  {
+    compileJsonObj(value, localeValues, delimiters);
+  }
+}
+function compileJsonObj(jsonObj, localeValues, delimiters) {
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    compileValue(jsonObj, key, localeValues, delimiters);
+  });
+  return jsonObj;
+}
+function walkJsonObj(jsonObj, walk) {
+  if (isArray(jsonObj)) {
+    for (var i = 0; i < jsonObj.length; i++) {
+      if (walk(jsonObj, i)) {
+        return true;
+      }
+    }
+  } else
+  if (isObject(jsonObj)) {
+    for (var key in jsonObj) {
+      if (walk(jsonObj, key)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function resolveLocale(locales) {
+  return function (locale) {
+    if (!locale) {
+      return locale;
+    }
+    locale = normalizeLocale(locale) || locale;
+    return resolveLocaleChain(locale).find(function (locale) {return locales.indexOf(locale) > -1;});
+  };
+}
+function resolveLocaleChain(locale) {
+  var chain = [];
+  var tokens = locale.split('-');
+  while (tokens.length) {
+    chain.push(tokens.join('-'));
+    tokens.pop();
+  }
+  return chain;
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 10)))
+
+/***/ }),
+
+/***/ 142:
+/*!************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 143));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 144));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 145));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 143:
 /*!***********************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
   \***********************************************************************************************************/
@@ -3943,7 +3943,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show mo
 
 /***/ }),
 
-/***/ 141:
+/***/ 144:
 /*!****************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
   \****************************************************************************************************************/
@@ -3954,7 +3954,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 
 /***/ }),
 
-/***/ 142:
+/***/ 145:
 /*!****************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
   \****************************************************************************************************************/
@@ -4008,7 +4008,7 @@ exports.setupDevtoolsPlugin = setupDevtoolsPlugin;
 
 /***/ }),
 
-/***/ 150:
+/***/ 153:
 /*!**************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \**************************************************************************************************/
@@ -4580,7 +4580,7 @@ __exportStar(__webpack_require__(/*! ./util */ 24), exports);
 
 /***/ }),
 
-/***/ 186:
+/***/ 189:
 /*!**************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
   \**************************************************************************************************************/
@@ -4588,46 +4588,13 @@ __exportStar(__webpack_require__(/*! ./util */ 24), exports);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 187));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 188));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 189));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 190));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 191));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 192));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
   'zh-Hant': _zhHant.default };exports.default = _default;
-
-/***/ }),
-
-/***/ 187:
-/*!*************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
-  \*************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
-
-/***/ }),
-
-/***/ 188:
-/*!******************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
-  \******************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
-
-/***/ }),
-
-/***/ 189:
-/*!******************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
-  \******************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
 
 /***/ }),
 
@@ -4645,7 +4612,54 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 197:
+/***/ 190:
+/*!*************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
+  \*************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
+
+/***/ }),
+
+/***/ 191:
+/*!******************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
+  \******************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
+
+/***/ }),
+
+/***/ 192:
+/*!******************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
+  \******************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
+
+/***/ }),
+
+/***/ 20:
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/app.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+
+/***/ }),
+
+/***/ 200:
 /*!*******************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*******************************************************************************************************************/
@@ -4785,21 +4799,7 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 20:
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/app.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-
-
-/***/ }),
-
-/***/ 203:
+/***/ 206:
 /*!***********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************************/
@@ -5961,73 +5961,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
-
-/***/ }),
-
-/***/ 234:
-/*!***********************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/format.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports._pad = _pad;exports._formatTime = _formatTime;exports.formatLyric = formatLyric;exports.sortRule = sortRule;exports.showToast = showToast; /*秒前边加0*/
-function _pad(num) {var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  var len = num.toString().length;
-  while (len < n) {
-    num = '0' + num;
-    len++;
-  }
-  return num;
-}
-
-// 处理时间 秒变为分秒
-function _formatTime(interval) {
-  interval = interval | 0;
-  var minute = interval / 60 | 0;
-  var second = _pad(interval % 60);
-  return "".concat(minute, ":").concat(second);
-}
-
-// 处理歌词
-function formatLyric(text) {
-  var resultLyric = [];
-  var arr = text.split("\n"); //通过换行符“\n”进行切割
-  var row = arr.length; //获取歌词行数
-  var _loop = function _loop(i) {
-    var temp_row = arr[i]; //现在每一行格式大概就是这样"[00:04.302][02:10.00]hello world";
-    var temp_arr = temp_row.split("]"); //我们可以通过“]”对时间和文本进行分离
-    var text = temp_arr.pop(); //把歌词文本从数组中剔除出来，获取到歌词文本了！
-    //再对剩下的歌词时间进行处理
-    temp_arr.forEach(function (element) {
-      var obj = {};
-      var time_arr = element.substr(1, element.length - 1).split(":"); //先把多余的“[”去掉，再分离出分、秒
-      var s = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
-      obj.time = s;
-      obj.text = text;
-      resultLyric.push(obj); //每一行歌词对象存到组件的showLyric歌词属性里
-    });};for (var i = 0; i < row; i++) {_loop(i);
-  }
-  resultLyric.sort(sortRule); //由于不同时间的相同歌词我们给排到一起了，所以这里要以时间顺序重新排列一下
-  // showLyric=resultLyric
-  return resultLyric;
-}
-
-//设置一下排序规则
-function sortRule(a, b) {
-  return a.time - b.time;
-}
-
-// 提示信息
-function showToast(title) {
-  uni.showToast({
-    title: title,
-    duration: 2000,
-    icon: 'error' });
-
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
 
 /***/ }),
 
@@ -12139,6 +12072,73 @@ const createSSRApp = createApp;
 
 /***/ }),
 
+/***/ 89:
+/*!***********************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/format.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports._pad = _pad;exports._formatTime = _formatTime;exports.formatLyric = formatLyric;exports.sortRule = sortRule;exports.showToast = showToast; /*秒前边加0*/
+function _pad(num) {var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  var len = num.toString().length;
+  while (len < n) {
+    num = '0' + num;
+    len++;
+  }
+  return num;
+}
+
+// 处理时间 秒变为分秒
+function _formatTime(interval) {
+  interval = interval | 0;
+  var minute = interval / 60 | 0;
+  var second = _pad(interval % 60);
+  return "".concat(minute, ":").concat(second);
+}
+
+// 处理歌词
+function formatLyric(text) {
+  var resultLyric = [];
+  var arr = text.split("\n"); //通过换行符“\n”进行切割
+  var row = arr.length; //获取歌词行数
+  var _loop = function _loop(i) {
+    var temp_row = arr[i]; //现在每一行格式大概就是这样"[00:04.302][02:10.00]hello world";
+    var temp_arr = temp_row.split("]"); //我们可以通过“]”对时间和文本进行分离
+    var text = temp_arr.pop(); //把歌词文本从数组中剔除出来，获取到歌词文本了！
+    //再对剩下的歌词时间进行处理
+    temp_arr.forEach(function (element) {
+      var obj = {};
+      var time_arr = element.substr(1, element.length - 1).split(":"); //先把多余的“[”去掉，再分离出分、秒
+      var s = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
+      obj.time = s;
+      obj.text = text;
+      resultLyric.push(obj); //每一行歌词对象存到组件的showLyric歌词属性里
+    });};for (var i = 0; i < row; i++) {_loop(i);
+  }
+  resultLyric.sort(sortRule); //由于不同时间的相同歌词我们给排到一起了，所以这里要以时间顺序重新排列一下
+  // showLyric=resultLyric
+  return resultLyric;
+}
+
+//设置一下排序规则
+function sortRule(a, b) {
+  return a.time - b.time;
+}
+
+// 提示信息
+function showToast(title) {
+  uni.showToast({
+    title: title,
+    duration: 2000,
+    icon: 'error' });
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
+
+/***/ }),
+
 /***/ 9:
 /*!******************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/uni.api.esm.js ***!
@@ -13001,7 +13001,7 @@ var index = initUni(shims, protocols);exports.default = index;
 
 /***/ }),
 
-/***/ 95:
+/***/ 98:
 /*!***********************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/search.js ***!
   \***********************************************************/

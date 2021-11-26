@@ -11,15 +11,17 @@
 			<swiper class="middle" style="height: 280px;" @change="changeDot">
 				<swiper-item class="middle-l" style="overflow:visible">
 					<view class="cd-wrapper">
-					<view class="cd"  :class="[isPlay ? 'play':'']">
-						<image :src="songPic" class="image" :class="[isPlay ? 'play':'']"></image>
+						<view class="cd" :class="[isPlay ? 'play':'']">
+							<image :src="songPic" class="image" :class="[isPlay ? 'play':'']"></image>
 						</view>
 					</view>
 				</swiper-item>
 				<swiper-item class="middle-r">
-					<scroll-view class="lyric-wrapper" scroll-y scroll-into-view="" scroll-with-animation :scroll-top="marginTop">
+					<scroll-view class="lyric-wrapper" scroll-y scroll-into-view="" scroll-with-animation
+						:scroll-top="marginTop">
 						<view v-if="showLyric">
-							<view class="text" v-for="(item,index) in showLyric" :key="item.time" :class="[lyricIndex === index?'current':'']">
+							<view class="text" v-for="(item,index) in showLyric" :key="item.time"
+								:class="[lyricIndex === index?'current':'']">
 								{{item.text}}
 							</view>
 						</view>
@@ -30,7 +32,8 @@
 				</swiper-item>
 			</swiper>
 			<view class="dots-wrapper">
-				<view class="dots" :class="[currentDot == index ? 'current':'']" v-for="(item,index) in dotsArray" :key="item"></view>
+				<view class="dots" :class="[currentDot == index ? 'current':'']" v-for="(item,index) in dotsArray"
+					:key="item"></view>
 			</view>
 			<view class="bottom">
 				<view class="progress-wrapper">
@@ -42,19 +45,17 @@
 				</view>
 				<view class="operators">
 					<view class="icon i-left">
-						<image
-							:src="getImgUrl(playMod)"
-							@tap="changeMod" ></image>
+						<image :src="getImgUrl(playMod)" @tap="changeMod"></image>
 					</view>
-					 <view class="icon i-left">
+					<view class="icon i-left">
 						<image class="icon-pre" src="@/static/icon/previous.png" @tap="prev"></image>
 					</view>
 					<view class="icon i-center">
-						<image src="@/static/icon/stop.png" @tap="togglePlaying" :hidden="!isPlay" ></image>
+						<image src="@/static/icon/stop.png" @tap="togglePlaying" :hidden="!isPlay"></image>
 						<image src="@/static/icon/start.png" @tap="togglePlaying" :hidden="isPlay"></image>
 					</view>
 					<view class="icon i-right">
-						<image class="icon-next" src="@/static/icon/next.png" @tap="next" ></image>
+						<image class="icon-next" src="@/static/icon/next.png" @tap="next"></image>
 					</view>
 					<view class="icon i-right" @tap="openList">
 						<image src="@/static/icon/list.png" class="icon-playlist"></image>
@@ -66,9 +67,10 @@
 			<view class="close-list" @tap="closeList"></view>
 			<view class="play-content">
 				<view class="plyer-list-title">播放队列</view>
-				 <scroll-view class="playlist-wrapper" scroll-y>
+				<scroll-view class="playlist-wrapper" scroll-y>
 					<view v-if="songlist">
-						<view class="item" @tap="playthis" v-for="(item,index) in songlist" :key="item.id" :data-id="item.id" :data-index="index">
+						<view class="item" @tap="playthis" v-for="(item,index) in songlist" :key="item.id"
+							:data-id="item.id" :data-index="index">
 							<view class="name">{{item.name}}</view>
 							<view class="play_list__line">-</view>
 							<view class="singer">{{item.ar[0].name}}</view>
@@ -118,7 +120,7 @@
 							<view class="singer">{{item.arname}}</view>
 						</view>
 					</view>-->
-				</scroll-view> 
+				</scroll-view>
 				<view class="close-playlist" @tap="closeList">关闭</view>
 			</view>
 		</view>
@@ -126,6 +128,11 @@
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
 	import {
 		requestGet,
 		SongDataURL,
@@ -156,38 +163,41 @@
 				currentTime: '00:00',
 				precent: 0,
 				showLyric: [],
-				marginTop:0,
-				lyricIndex:0,
-				timer:null,
-				songlist:[],
-				id:null,
-				idx:0,
-				songPic:'',
-				songArtist:'',
-				bgAudioManager:null
+				marginTop: 0,
+				lyricIndex: 0,
+				timer: null,
+				songlist: [],
+				idx: 0,
+				songPic: '',
+				songArtist: '',
+				bgAudioManager: null
 			}
 		},
 		onLoad() {
-			if(this.id){
+			 console.log(this.id)
+			if (this.id) {
 				this._init()
 				this.getSongList()
 			}
 			this.getArtist()
 		},
+		computed: {
+			...mapState(['id']),
+		},
 		methods: {
 			// 初始化
-			_init(id){
+			_init(id) {
 				this.getSongData(id)
 				this.getSongURL(id)
 				this.getLyricURL(id)
 			},
 			// 播放顺序图片的获取
-			getImgUrl(playMod){
-				if(playMod == 1){
+			getImgUrl(playMod) {
+				if (playMod == 1) {
 					return '../../static/icon/sequence.png'
-				}else if(playMod == 2){
+				} else if (playMod == 2) {
 					return '../../static/icon/random.png'
-				}else if(playMod == 3){
+				} else if (playMod == 3) {
 					return '../../static/icon/singlecycle.png'
 				}
 			},
@@ -207,24 +217,24 @@
 			// 获取歌词
 			async getLyricURL(id) {
 				const result = await requestGet(LyricURL + id)
-				this.showLyric =formatLyric(result.lrc.lyric)
+				this.showLyric = formatLyric(result.lrc.lyric)
 			},
 			// 获取歌单
-			async getSongList(id){
+			async getSongList(id) {
 				const result = await requestGet(SongListURL + id);
 				this.songlist = result.playlist.tracks;
 			},
 			// 根据歌手获取歌手的50部歌曲
-			async getArtist(){
+			async getArtist() {
 				const result = await requestGet(artistURL)
 				this.songlist = result.songs
 			},
 			// 创建播放器
-			
-			
-			
+
+
+
 			createBgAudio(res) {
-				if(res.url){
+				if (res.url) {
 					//#ifdef MP-WEIXIN 
 					this.bgAudioManager = uni.getBackgroundAudioManager(); //获取全局唯一的背景音频管理器。并把它给实例bgAudioManage
 					this.bgAudioManager.title = 'title';
@@ -277,39 +287,40 @@
 						this.precent = precent;
 					})
 					//#endif
-				}else{
+				} else {
 					showToast('该歌曲需付费 ')
 				}
 			},
 			// 歌词滚动
-			lyricScroll(){
+			lyricScroll() {
 				clearInterval(this.timer)
-				this.timer = setInterval(()=>{
-					for(var i=0;i<this.showLyric.length;i++){
-						if(this.bgAudioManager.currentTime >= this.showLyric[this.showLyric.length-1].time){
-							this.lyricIndex = this.showLyric.length-1;
+				this.timer = setInterval(() => {
+					for (var i = 0; i < this.showLyric.length; i++) {
+						if (this.bgAudioManager.currentTime >= this.showLyric[this.showLyric.length - 1].time) {
+							this.lyricIndex = this.showLyric.length - 1;
 							break;
 						}
-						if(this.bgAudioManager.currentTime>= this.showLyric[i].time-1 && this.bgAudioManager.currentTime <= this.showLyric[i+1].time-1){
+						if (this.bgAudioManager.currentTime >= this.showLyric[i].time - 1 && this.bgAudioManager
+							.currentTime <= this.showLyric[i + 1].time - 1) {
 							this.lyricIndex = i;
-							this.marginTop = (this.lyricIndex-1) * 32
+							this.marginTop = (this.lyricIndex - 1) * 32
 						}
 					}
-				},500)
+				}, 500)
 			},
 			// 暂停和播放
 			togglePlaying() {
-				if(this.id){
+				if (this.id) {
 					if (this.isPlay) {
 						this.bgAudioManager.pause()
 					} else {
 						this.bgAudioManager.play()
 					}
 					this.isPlay = !this.isPlay
-				}else{
+				} else {
 					showToast('暂无歌曲 ')
 				}
-				
+
 			},
 			// 小圆点
 			changeDot(e) {
@@ -317,7 +328,7 @@
 			},
 			// 进度条拖动
 			sliderChange(e) {
-				const value = e.detail.value/100 * this.bgAudioManager.duration
+				const value = e.detail.value / 100 * this.bgAudioManager.duration
 				this.bgAudioManager.seek(Math.ceil(value));
 				this.bgAudioManager.play()
 			},
@@ -338,8 +349,8 @@
 				this.translateCls = 'downtranslate'
 			},
 			// 播放当前歌曲
-			playthis(e){
-				this.id= e.currentTarget.dataset.id;
+			playthis(e) {
+				this.id = e.currentTarget.dataset.id;
 				this.idx = e.currentTarget.dataset.index;
 				this._init(this.id);
 				this.bgAudioManager.destroy();
@@ -347,55 +358,55 @@
 				this.translateCls = 'downtranslate';
 			},
 			// 播放下一首
-			next(){
-				if(this.id){
-					this.idx+=1;
+			next() {
+				if (this.id) {
+					this.idx += 1;
 					// 顺序播放
-					if(this.playMod===1){
+					if (this.playMod === 1) {
 						// 如果是最后一首则从第一首开始播放
-						if(this.idx === this.songlist.length ){
-							this.idx=0;
+						if (this.idx === this.songlist.length) {
+							this.idx = 0;
 							this.playSong()
-						}else{
+						} else {
 							this.playSong()
 						}
-					}else if(this.playMod===2){
-						this.idx = Math.ceil(Math.random()*this.songlist.length)
+					} else if (this.playMod === 2) {
+						this.idx = Math.ceil(Math.random() * this.songlist.length)
 						this.playSong()
-					}else {
-						this.idx = this.idx-1
+					} else {
+						this.idx = this.idx - 1
 						this.playSong()
 					}
-				}else{
+				} else {
 					showToast('暂无歌曲 ')
 				}
-				
+
 			},
 			// 播放上一首
-			prev(){
-				if(this.id){
-					this.idx-=1;
+			prev() {
+				if (this.id) {
+					this.idx -= 1;
 					// 顺序播放
-					if(this.playMod===1){
+					if (this.playMod === 1) {
 						// 如果是最后一首则从第一首开始播放
-						if(this.idx === -1 ){
-							this.idx=this.songlist.length-1;
+						if (this.idx === -1) {
+							this.idx = this.songlist.length - 1;
 							this.playSong()
-						}else{
+						} else {
 							this.playSong()
 						}
-					}else if(this.playMod===2){
-						this.idx = Math.ceil(Math.random()*this.songlist.length)
+					} else if (this.playMod === 2) {
+						this.idx = Math.ceil(Math.random() * this.songlist.length)
 						this.playSong()
-					}else {
-						this.idx = this.idx+1
+					} else {
+						this.idx = this.idx + 1
 						this.playSong()
 					}
-				}else{
+				} else {
 					showToast('暂无歌曲 ')
 				}
 			},
-			playSong(){
+			playSong() {
 				this.id = this.songlist[this.idx].id;
 				this._init(this.id)
 				this.bgAudioManager.stop();
