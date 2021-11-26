@@ -90,8 +90,8 @@ export var mvcomment = "http://121.5.237.135:3000/comment/mv";
 export var likeList = "http://121.5.237.135:3000/likelist";
 export var searchUrl = "http://121.5.237.135:3000/search";
 export var searchHotUrl = "http://121.5.237.135:3000/search/hot";
-export const SongDataURL = "http://121.5.237.135:3000/song/detail?ids=" //获取歌曲详情
-export const SongURL = "http://121.5.237.135:3000/song/url?id=" //获取音乐 url
-export const LyricURL = "http://121.5.237.135:3000/lyric?id="  //获取歌词
-export const SongListURL = "http://121.5.237.135:3000/playlist/detail?id=" //获取歌单详情
-export const artistURL = "http://121.5.237.135:3000/artist/top/song?id=5781" //歌手热门 50 首歌曲
+export const SongDataURL = "http://121.5.237.135:3000/song/detail" //获取歌曲详情
+export const SongURL = "http://121.5.237.135:3000/song/url" //获取音乐 url
+export const LyricURL = "http://121.5.237.135:3000/lyric"  //获取歌词
+export const SongListURL = "http://121.5.237.135:3000/playlist/detail" //获取歌单详情
+export const artistURL = "http://121.5.237.135:3000/artist/top/song" //歌手热门 50 首歌曲

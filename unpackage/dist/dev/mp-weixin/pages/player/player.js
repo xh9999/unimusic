@@ -344,25 +344,34 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 89);function _interop
     },
     // 获取歌曲信息
     getSongData: function getSongData(id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  (0, _http.requestGet)(_http.SongDataURL + id));case 2:result = _context.sent;
+                  (0, _http.requestGet)(_http.SongDataURL, {
+                    ids: _this.id }));case 2:result = _context.sent;
+
+                console.log(result, '==============');
                 _this.songs = result.songs[0];
                 _this.songPic = _this.songs.al.picUrl;
-                _this.songArtist = _this.songs.ar[0];case 6:case "end":return _context.stop();}}}, _callee);}))();
+                _this.songArtist = _this.songs.ar[0];case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
     // 获取歌曲的URL地址
     getSongURL: function getSongURL(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
-                  (0, _http.requestGet)(_http.SongURL + id));case 2:result = _context2.sent;
+                  (0, _http.requestGet)(_http.SongURL, {
+                    id: _this2.id }));case 2:result = _context2.sent;
+
                 _this2.url = result.data[0];
                 _this2.createBgAudio(result.data[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     // 获取歌词
     getLyricURL: function getLyricURL(id) {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
-                  (0, _http.requestGet)(_http.LyricURL + id));case 2:result = _context3.sent;
+                  (0, _http.requestGet)(_http.LyricURL, {
+                    id: _this3.id }));case 2:result = _context3.sent;
+
                 _this3.showLyric = (0, _format.formatLyric)(result.lrc.lyric);case 4:case "end":return _context3.stop();}}}, _callee3);}))();
     },
     // 获取歌单
     getSongList: function getSongList(id) {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
-                  (0, _http.requestGet)(_http.SongListURL + id));case 2:result = _context4.sent;
+                  (0, _http.requestGet)(_http.SongListURL, {
+                    id: _this4.id }));case 2:result = _context4.sent;
+
                 _this4.songlist = result.playlist.tracks;case 4:case "end":return _context4.stop();}}}, _callee4);}))();
     },
     // 根据歌手获取歌手的50部歌曲

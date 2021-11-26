@@ -174,7 +174,7 @@
 			}
 		},
 		onLoad() {
-			 console.log(this.id)
+			console.log(this.id)
 			if (this.id) {
 				this._init()
 				this.getSongList()
@@ -203,25 +203,34 @@
 			},
 			// 获取歌曲信息
 			async getSongData(id) {
-				const result = await requestGet(SongDataURL + id)
+				const result = await requestGet(SongDataURL, {
+					ids: this.id
+				})
+				console.log(result,'==============')
 				this.songs = result.songs[0];
 				this.songPic = this.songs.al.picUrl
 				this.songArtist = this.songs.ar[0]
 			},
 			// 获取歌曲的URL地址
 			async getSongURL(id) {
-				const result = await requestGet(SongURL + id)
+				const result = await requestGet(SongURL, {
+					id: this.id
+				})
 				this.url = result.data[0]
 				this.createBgAudio(result.data[0])
 			},
 			// 获取歌词
 			async getLyricURL(id) {
-				const result = await requestGet(LyricURL + id)
+				const result = await requestGet(LyricURL, {
+					id: this.id
+				})
 				this.showLyric = formatLyric(result.lrc.lyric)
 			},
 			// 获取歌单
 			async getSongList(id) {
-				const result = await requestGet(SongListURL + id);
+				const result = await requestGet(SongListURL, {
+					id: this.id
+				});
 				this.songlist = result.playlist.tracks;
 			},
 			// 根据歌手获取歌手的50部歌曲
@@ -416,7 +425,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" >
 	.player {
 		.normal-player {
 			position: fixed;
