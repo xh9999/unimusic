@@ -1,10 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/player/player"],{
 
-<<<<<<< HEAD
-/***/ 57:
-=======
 /***/ 83:
->>>>>>> xh
 /*!**************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/main.js?{"page":"pages%2Fplayer%2Fplayer"} ***!
   \**************************************************************************************/
@@ -20,11 +16,7 @@ createPage(_player.default);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 58:
-=======
 /***/ 84:
->>>>>>> xh
 /*!*******************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/player/player.vue ***!
   \*******************************************************************/
@@ -63,11 +55,7 @@ component.options.__file = "pages/player/player.vue"
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 59:
-=======
 /***/ 85:
->>>>>>> xh
 /*!**************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/player/player.vue?vue&type=template&id=f78da2b4& ***!
   \**************************************************************************************************/
@@ -89,11 +77,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 60:
-=======
 /***/ 86:
->>>>>>> xh
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/player/player.vue?vue&type=template&id=f78da2b4& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -120,11 +104,7 @@ render._withStripped = true
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 61:
-=======
 /***/ 87:
->>>>>>> xh
 /*!********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/player/player.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************/
@@ -140,11 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 62:
-=======
 /***/ 88:
->>>>>>> xh
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/player/player.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -152,75 +128,30 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 31));
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+var _default =
 
-
-
-
-
-
-
-var _http = __webpack_require__(/*! ../../utils/http.js */ 34);
-
-
-
-
-var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
-
-
-
-
-var innerAudioContext = uni.createInnerAudioContext();var _default =
 {
   data: function data() {
-    return {
-      url: '',
-      musicImg: '' };
+    return {};
+
 
   },
-  created: function created() {var _this = this;
-    this.getUrl().then(function () {
-      innerAudioContext.src = _this.url,
-      innerAudioContext.autoplay = true;
-    });
+  created: function created() {
+
   },
-  onShow: function onShow() {
-    this.getUrl();
-    this.getDetail();
-  },
-  watch: {
-    id: function id() {var _this2 = this;
-      this.getUrl().then(function () {
-        innerAudioContext.src = _this2.url,
-        innerAudioContext.autoplay = true;
-      });
-    } },
+  watch: {},
 
-  computed: _objectSpread(_objectSpread({},
-  (0, _vuex.mapState)(['id'])),
-  (0, _vuex.mapGetters)(['watcher'])),
 
-  methods: {
-    stop: function stop() {
-      innerAudioContext.pause();
-    },
-    play: function play() {
-      innerAudioContext.play();
-    },
-    getUrl: function getUrl() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  (0, _http.requestGet)(_http.musicUrl, {
-                    id: _this3.id }));case 2:result = _context.sent;
+  computed: {},
 
-                _this3.url = result.data[0].url;case 4:case "end":return _context.stop();}}}, _callee);}))();
-    },
-    // 获取音乐的详情
-    getDetail: function getDetail() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var result;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
-                  (0, _http.requestGet)(_http.musicDetail, {
-                    ids: _this4.id }));case 2:result = _context2.sent;
 
-                _this4.musicImg = result.songs[0].al.picUrl;case 4:case "end":return _context2.stop();}}}, _callee2);}))();
-    } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/uni.api.esm.js */ 9)["default"]))
+  methods: {} };exports.default = _default;
 
 /***/ })
 

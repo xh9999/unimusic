@@ -1,10 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/list/list"],{
 
-<<<<<<< HEAD
-/***/ 33:
-=======
 /***/ 51:
->>>>>>> xh
 /*!**********************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/main.js?{"page":"pages%2Flist%2Flist"} ***!
   \**********************************************************************************/
@@ -20,11 +16,7 @@ createPage(_list.default);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 34:
-=======
 /***/ 52:
->>>>>>> xh
 /*!***************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/list/list.vue ***!
   \***************************************************************/
@@ -65,11 +57,7 @@ component.options.__file = "pages/list/list.vue"
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 35:
-=======
 /***/ 53:
->>>>>>> xh
 /*!**********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/list/list.vue?vue&type=template&id=7d5e07c6& ***!
   \**********************************************************************************************/
@@ -91,11 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 36:
-=======
 /***/ 54:
->>>>>>> xh
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/list/list.vue?vue&type=template&id=7d5e07c6& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -112,13 +96,13 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 116))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 119))
     },
     uniListItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 123))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 126))
     },
     uniLoadMore: function() {
-      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 130))
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 133))
     }
   }
 } catch (e) {
@@ -151,11 +135,7 @@ render._withStripped = true
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 37:
-=======
 /***/ 55:
->>>>>>> xh
 /*!****************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/list/list.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************/
@@ -171,11 +151,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 38:
-=======
 /***/ 56:
->>>>>>> xh
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/list/list.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

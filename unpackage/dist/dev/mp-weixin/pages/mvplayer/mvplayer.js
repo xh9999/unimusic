@@ -1,10 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/mvplayer/mvplayer"],{
 
-<<<<<<< HEAD
-/***/ 51:
-=======
 /***/ 75:
->>>>>>> xh
 /*!******************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/main.js?{"page":"pages%2Fmvplayer%2Fmvplayer"} ***!
   \******************************************************************************************/
@@ -20,11 +16,7 @@ createPage(_mvplayer.default);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 52:
-=======
 /***/ 76:
->>>>>>> xh
 /*!***********************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/mvplayer/mvplayer.vue ***!
   \***********************************************************************/
@@ -65,11 +57,7 @@ component.options.__file = "pages/mvplayer/mvplayer.vue"
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 53:
-=======
 /***/ 77:
->>>>>>> xh
 /*!******************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/mvplayer/mvplayer.vue?vue&type=template&id=24d9cc74& ***!
   \******************************************************************************************************/
@@ -91,11 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 54:
-=======
 /***/ 78:
->>>>>>> xh
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/mvplayer/mvplayer.vue?vue&type=template&id=24d9cc74& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -112,10 +96,10 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 116))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 119))
     },
     uniListItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 123))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 126))
     }
   }
 } catch (e) {
@@ -148,11 +132,7 @@ render._withStripped = true
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 55:
-=======
 /***/ 79:
->>>>>>> xh
 /*!************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages/mvplayer/mvplayer.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************/
@@ -168,11 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 56:
-=======
 /***/ 80:
->>>>>>> xh
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/xuanhui/Desktop/cloudmusic/pages/mvplayer/mvplayer.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

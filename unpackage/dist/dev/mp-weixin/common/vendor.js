@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
-=======
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
 
 /***/ 1:
->>>>>>> xh
 /*!******************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/pages.json ***!
   \******************************************************/
@@ -703,7 +697,7 @@ const getGlobalThis = () => {
 
 /***/ }),
 
-/***/ 113:
+/***/ 116:
 /*!***********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \***********************************************************************************************/
@@ -1415,7 +1409,7 @@ function initData(vueOptions) {
       data = data.call(appConfig.globalProperties);
     }
     catch (e) {
-      if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data, e);
       }
     }
@@ -1970,7 +1964,7 @@ store;exports.default = _default;
 
 /***/ }),
 
-/***/ 135:
+/***/ 138:
 /*!*************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
   \*************************************************************/
@@ -2434,7 +2428,7 @@ function resolveLocaleChain(locale) {
 
 /***/ }),
 
-/***/ 136:
+/***/ 139:
 /*!************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
   \************************************************************************************************************/
@@ -2442,46 +2436,13 @@ function resolveLocaleChain(locale) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 137));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 138));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 139));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 140));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 141));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 142));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
   'zh-Hant': _zhHant.default };exports.default = _default;
-
-/***/ }),
-
-/***/ 137:
-/*!***********************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
-  \***********************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
-
-/***/ }),
-
-/***/ 138:
-/*!****************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
-  \****************************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
-
-/***/ }),
-
-/***/ 139:
-/*!****************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
-  \****************************************************************************************************************/
-/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
 
 /***/ }),
 
@@ -3971,7 +3932,83 @@ module.exports = index_cjs
 
 /***/ }),
 
-/***/ 147:
+/***/ 140:
+/*!***********************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
+  \***********************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
+
+/***/ }),
+
+/***/ 141:
+/*!****************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
+  \****************************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
+
+/***/ }),
+
+/***/ 142:
+/*!****************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
+  \****************************************************************************************************************/
+/*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
+
+/***/ }),
+
+/***/ 15:
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/index.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.setupDevtoolsPlugin = void 0;
+const env_1 = __webpack_require__(/*! ./env */ 16);
+const const_1 = __webpack_require__(/*! ./const */ 17);
+__exportStar(__webpack_require__(/*! ./api */ 18), exports);
+function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
+    const hook = env_1.getDevtoolsGlobalHook();
+    if (hook) {
+        hook.emit(const_1.HOOK_SETUP, pluginDescriptor, setupFn);
+    }
+    else {
+        const target = env_1.getTarget();
+        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
+        list.push({
+            pluginDescriptor,
+            setupFn
+        });
+    }
+}
+exports.setupDevtoolsPlugin = setupDevtoolsPlugin;
+
+
+/***/ }),
+
+/***/ 150:
 /*!**************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \**************************************************************************************************/
@@ -4468,49 +4505,6 @@ SchemaValidator;exports.default = _default;
 
 /***/ }),
 
-/***/ 15:
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/index.js ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupDevtoolsPlugin = void 0;
-const env_1 = __webpack_require__(/*! ./env */ 16);
-const const_1 = __webpack_require__(/*! ./const */ 17);
-__exportStar(__webpack_require__(/*! ./api */ 18), exports);
-function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
-    const hook = env_1.getDevtoolsGlobalHook();
-    if (hook) {
-        hook.emit(const_1.HOOK_SETUP, pluginDescriptor, setupFn);
-    }
-    else {
-        const target = env_1.getTarget();
-        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
-        list.push({
-            pluginDescriptor,
-            setupFn
-        });
-    }
-}
-exports.setupDevtoolsPlugin = setupDevtoolsPlugin;
-
-
-/***/ }),
-
 /***/ 16:
 /*!*********************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/env.js ***!
@@ -4586,7 +4580,72 @@ __exportStar(__webpack_require__(/*! ./util */ 24), exports);
 
 /***/ }),
 
-/***/ 183:
+/***/ 186:
+/*!**************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 187));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 188));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 189));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 187:
+/*!*************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
+  \*************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
+
+/***/ }),
+
+/***/ 188:
+/*!******************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
+  \******************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
+
+/***/ }),
+
+/***/ 189:
+/*!******************************************************************************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
+  \******************************************************************************************************************/
+/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
+
+/***/ }),
+
+/***/ 19:
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/api.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+
+/***/ }),
+
+/***/ 197:
 /*!*******************************************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*******************************************************************************************************************/
@@ -4726,7 +4785,21 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 189:
+/***/ 20:
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/app.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+
+/***/ }),
+
+/***/ 203:
 /*!***********************************************************************************************!*\
   !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************************/
@@ -5849,34 +5922,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 19:
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/api.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-
-
-/***/ }),
-
-/***/ 20:
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/app.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-
-
-/***/ }),
-
 /***/ 21:
 /*!*******************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/component.js ***!
@@ -5891,48 +5936,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 218:
-/*!***********************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/search.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.handleStr = handleStr;exports.arrQc = arrQc;function handleStr(str) {
-
-  if (str.length > 16) {
-    str = str.slice(0, 16) + "...";
-  }
-  return str;
-
-
-  if (str.length > 16) {
-    str = str.slice(0, 16) + "...";
-  }
-  return str;
-
-};
-
-function arrQc(arr, name) {
-
-  var hash = {};
-  return arr.reduce(function (item, next) {
-    hash[next[name]] ? '' : hash[next[name]] =  true && item.push(next);
-    return item;
-  }, []);
-
-
-  var hash = {};
-  return arr.reduce(function (item, next) {
-    hash[next[name]] ? '' : hash[next[name]] =  true && item.push(next);
-    return item;
-  }, []);
-
-}
-
-/***/ }),
-
 /***/ 22:
 /*!*****************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@vue/devtools-api/lib/cjs/api/context.js ***!
@@ -5944,57 +5947,6 @@ function arrQc(arr, name) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
-
-/***/ }),
-
-/***/ 226:
-/*!**************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
-  \**************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 227));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 228));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 229));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
-{
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default };exports.default = _default;
-
-/***/ }),
-
-/***/ 227:
-/*!*************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
-  \*************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
-
-/***/ }),
-
-/***/ 228:
-/*!******************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
-  \******************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
-
-/***/ }),
-
-/***/ 229:
-/*!******************************************************************************************************************!*\
-  !*** C:/Users/xuanhui/Desktop/cloudmusic/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
-  \******************************************************************************************************************/
-/*! exports provided: uni-search-bar.cancel, uni-search-bar.placeholder, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
 
 /***/ }),
 
@@ -9263,23 +9215,6 @@ function resolvePropValue(options, props, key, value, instance, isAbsent) {
     }
     return value;
 }
-<<<<<<< HEAD
-function flushCallbacks(instance) {
-    const ctx = instance.ctx;
-    const callbacks = ctx.__next_tick_callbacks;
-    if (callbacks && callbacks.length) {
-        if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
-            const mpInstance = ctx.$scope;
-            console.log('[' +
-                +new Date() +
-                '][' +
-                (mpInstance.is || mpInstance.route) +
-                '][' +
-                instance.uid +
-                ']:flushCallbacks[' +
-                callbacks.length +
-                ']');
-=======
 function normalizePropsOptions(comp, appContext, asMixin = false) {
     const cache = appContext.propsCache;
     const cached = cache.get(comp);
@@ -9301,47 +9236,17 @@ function normalizePropsOptions(comp, appContext, asMixin = false) {
         };
         if (!asMixin && appContext.mixins.length) {
             appContext.mixins.forEach(extendProps);
->>>>>>> xh
         }
         if (comp.extends) {
             extendProps(comp.extends);
         }
-<<<<<<< HEAD
-    }
-}
-function nextTick$1(instance, fn) {
-    const ctx = instance.ctx;
-    if (!ctx.__next_tick_pending && !hasComponentEffect(instance)) {
-        if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
-            const mpInstance = ctx.$scope;
-            console.log('[' +
-                +new Date() +
-                '][' +
-                (mpInstance.is || mpInstance.route) +
-                '][' +
-                instance.uid +
-                ']:nextVueTick');
-=======
         if (comp.mixins) {
             comp.mixins.forEach(extendProps);
->>>>>>> xh
         }
     }
-<<<<<<< HEAD
-    if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
-        const mpInstance = ctx.$scope;
-        console.log('[' +
-            +new Date() +
-            '][' +
-            (mpInstance.is || mpInstance.route) +
-            '][' +
-            instance.uid +
-            ']:nextMPTick');
-=======
     if (!raw && !hasExtends) {
         cache.set(comp, _vue_shared__WEBPACK_IMPORTED_MODULE_0__["EMPTY_ARR"]);
         return _vue_shared__WEBPACK_IMPORTED_MODULE_0__["EMPTY_ARR"];
->>>>>>> xh
     }
     if (Object(_vue_shared__WEBPACK_IMPORTED_MODULE_0__["isArray"])(raw)) {
         for (let i = 0; i < raw.length; i++) {
@@ -9432,40 +9337,6 @@ function validateProp(name, value, prop, isAbsent) {
         warn$1('Missing required prop: "' + name + '"');
         return;
     }
-<<<<<<< HEAD
-    // TODO form-field
-    // track
-    return { keys, data: JSON.parse(JSON.stringify(ret)) };
-}
-function patch(instance) {
-    const ctx = instance.ctx;
-    const mpType = ctx.mpType;
-    if (mpType === 'page' || mpType === 'component') {
-        const start = Date.now();
-        const mpInstance = ctx.$scope;
-        const { keys, data } = getVueInstanceData(instance);
-        // data.__webviewId__ = mpInstance.data.__webviewId__
-        const diffData = diff(data, getMPInstanceData(mpInstance, keys));
-        if (Object.keys(diffData).length) {
-            if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
-                console.log('[' +
-                    +new Date() +
-                    '][' +
-                    (mpInstance.is || mpInstance.route) +
-                    '][' +
-                    instance.uid +
-                    '][耗时' +
-                    (Date.now() - start) +
-                    ']差量更新', JSON.stringify(diffData));
-            }
-            ctx.__next_tick_pending = true;
-            mpInstance.setData(diffData, () => {
-                ctx.__next_tick_pending = false;
-                flushCallbacks(instance);
-            });
-            // props update may have triggered pre-flush watchers.
-            flushPreFlushCbs(undefined, instance.update);
-=======
     // missing but optional
     if (value == null && !prop.required) {
         return;
@@ -9480,7 +9351,6 @@ function patch(instance) {
             const { valid, expectedType } = assertType(value, types[i]);
             expectedTypes.push(expectedType || '');
             isValid = valid;
->>>>>>> xh
         }
         if (!isValid) {
             warn$1(getInvalidTypeMessage(name, value, expectedTypes));
@@ -11691,7 +11561,7 @@ function flushCallbacks(instance) {
     const ctx = instance.ctx;
     const callbacks = ctx.__next_tick_callbacks;
     if (callbacks && callbacks.length) {
-        if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             const mpInstance = ctx.$scope;
             console.log('[' +
                 +new Date() +
@@ -11713,7 +11583,7 @@ function flushCallbacks(instance) {
 function nextTick$1(instance, fn) {
     const ctx = instance.ctx;
     if (!ctx.__next_tick_pending && !hasComponentEffect(instance)) {
-        if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             const mpInstance = ctx.$scope;
             console.log('[' +
                 +new Date() +
@@ -11725,7 +11595,7 @@ function nextTick$1(instance, fn) {
         }
         return nextTick(fn && fn.bind(instance.proxy));
     }
-    if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+    if (Object({"NODE_ENV":"development","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         const mpInstance = ctx.$scope;
         console.log('[' +
             +new Date() +
@@ -11805,7 +11675,7 @@ function patch(instance) {
         // data.__webviewId__ = mpInstance.data.__webviewId__
         const diffData = diff(data, getMPInstanceData(mpInstance, keys));
         if (Object.keys(diffData).length) {
-            if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+            if (Object({"NODE_ENV":"development","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
                 console.log('[' +
                     +new Date() +
                     '][' +
@@ -12473,11 +12343,6 @@ function invokeApi(method, api, options) {for (var _len2 = arguments.length, par
     {
       return api.apply(void 0, [wrapperOptions(interceptor, options)].concat(params));
     }
-<<<<<<< HEAD
-    catch (e) {
-      if (Object({"VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
-        console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data, e);
-=======
   }
   return api.apply(void 0, [options].concat(params));
 }
@@ -12508,7 +12373,6 @@ function formatApiArgs(args, options) {
       // defaultValue
       if (!(0, _shared.hasOwn)(params, name)) {
         params[name] = formatterOrDefaultValue;
->>>>>>> xh
       }
     }
   }
@@ -13080,6 +12944,48 @@ var protocols = /*#__PURE__*/Object.freeze({
 
 var index = initUni(shims, protocols);exports.default = index;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 10)))
+
+/***/ }),
+
+/***/ 95:
+/*!***********************************************************!*\
+  !*** C:/Users/xuanhui/Desktop/cloudmusic/utils/search.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.handleStr = handleStr;exports.arrQc = arrQc;function handleStr(str) {
+
+  if (str.length > 16) {
+    str = str.slice(0, 16) + "...";
+  }
+  return str;
+
+
+  if (str.length > 16) {
+    str = str.slice(0, 16) + "...";
+  }
+  return str;
+
+};
+
+function arrQc(arr, name) {
+
+  var hash = {};
+  return arr.reduce(function (item, next) {
+    hash[next[name]] ? '' : hash[next[name]] =  true && item.push(next);
+    return item;
+  }, []);
+
+
+  var hash = {};
+  return arr.reduce(function (item, next) {
+    hash[next[name]] ? '' : hash[next[name]] =  true && item.push(next);
+    return item;
+  }, []);
+
+}
 
 /***/ })
 
